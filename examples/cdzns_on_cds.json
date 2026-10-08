@@ -1,0 +1,54 @@
+{
+  "notes": "Fill nulls from specimen/mounting records. CdS metric is a repository reference, not measured calibration. No Zn fraction is assumed. Enable theoretical_overlays only after supplying required values.",
+  "geometry": {
+    "type": "coplanar",
+    "omega_motor": "Theta",
+    "detector_motor": "TwoTheta",
+    "omega_sign": 1,
+    "detector_sign": 1,
+    "omega_offset_deg": 0.0,
+    "detector_offset_deg": 0.0,
+    "frame": "nominal coplanar (mounting unverified)",
+    "calibration_verified": false,
+    "calibration_reference": null
+  },
+  "wavelength_angstrom": null,
+  "allow_provisional": true,
+  "sample": {
+    "identifier": "CdZnS on CdS; specimen metadata incomplete",
+    "substrate": {
+      "name": "CdS",
+      "crystal_structure": "wurtzite (reference model)",
+      "lattice": {"system": "hexagonal", "a": 4.136, "c": 6.716},
+      "reference": "Literature data for analysis/CIF/CdS.cif; cell lengths only, inconsistent CIF volume noted in Phase 1",
+      "composition": null,
+      "orientation": {"surface_plane": null, "in_plane_direction": null},
+      "reflections": null
+    },
+    "film": {
+      "name": "CdZnS",
+      "crystal_structure": null,
+      "lattice": null,
+      "composition": null,
+      "reference": null,
+      "orientation": {"surface_plane": null, "in_plane_direction": null},
+      "reflections": null
+    },
+    "frame_alignment": {
+      "map_frame": "nominal coplanar (mounting unverified)",
+      "sample_to_map": null,
+      "verified": false,
+      "reference": null,
+      "allow_provisional": false
+    }
+  },
+  "plot": {
+    "theoretical_overlays": false,
+    "mode": "points",
+    "intensity_scale": "log",
+    "dynamic_range_decades": 4,
+    "components": [1, 2],
+    "plane_tolerance": 0.01,
+    "title": "CdZnS on CdS — theory pending specimen metadata"
+  }
+}

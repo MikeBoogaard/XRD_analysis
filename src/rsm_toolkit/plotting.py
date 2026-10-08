@@ -75,15 +75,24 @@ def plot_rsm(rsm:RSM,*,intensity_scale="log",mode="points",bins=(400,400),
     ax.text(0.01,0.99,note,ha="left",va="top",transform=ax.transAxes,fontsize=8,
             bbox={"facecolor":"white","alpha":0.85,"edgecolor":"none"})
     omitted=next(i for i in range(3) if i not in components)
-    for reflection in reflections:
+    for index,reflection in enumerate(reflections):
         if reflection.frame!=rsm.frame:
             raise RSMError(f"Reflection frame {reflection.frame!r} differs from map frame {rsm.frame!r}.")
         if abs(reflection.q[omitted])>plane_tolerance:
             warnings.warn(f"Not drawing off-plane reflection {reflection.label}.",UserWarning,stacklevel=2)
             continue
         px,py=reflection.q[list(components)]
-        ax.plot(px,py,"x",color="red",ms=8)
-        ax.annotate(reflection.label+"\n"+reflection.status,(px,py),xytext=(5,5),textcoords="offset points",fontsize=7)
+        ax.plot(px,py,marker=reflection.marker,color=reflection.color,ms=9,
+                markerfacecolor="none",markeredgewidth=1.8,linestyle="none")
+        marker_note = "\nPROVISIONAL alignment" if "PROVISIONAL" in reflection.status else ""
+        ax.annotate(reflection.label+marker_note,(px,py),
+                    xytext=(10,-35 if index%2==0 else 30),textcoords="offset points",fontsize=7,
+                    arrowprops={"arrowstyle":"-","color":reflection.color},
+                    bbox={"facecolor":"white","alpha":0.85,"edgecolor":"none"})
+    if reflections:
+        ax.text(0.01,0.01,"Theory: geometric lattice positions; structure-factor allowance not established",
+                transform=ax.transAxes,fontsize=7,va="bottom",
+                bbox={"facecolor":"white","alpha":0.85,"edgecolor":"none"})
     if xlim is not None: ax.set_xlim(xlim)
     if ylim is not None: ax.set_ylim(ylim)
     return fig,ax

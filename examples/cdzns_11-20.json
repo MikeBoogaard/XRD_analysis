@@ -1,0 +1,132 @@
+{
+  "notes": "User: CdZnS on (11-20) CdS, Zn cation fraction 0.35, film aligned to substrate. First scan [1-100] is provisional. Relaxed linear Vegard model using repository reference cells; no strain or calibrated mounting assumed.",
+  "geometry": {
+    "type": "coplanar",
+    "omega_motor": "Theta",
+    "detector_motor": "TwoTheta",
+    "omega_sign": 1,
+    "detector_sign": 1,
+    "omega_offset_deg": 0.0,
+    "detector_offset_deg": 0.0,
+    "frame": "nominal coplanar (mounting unverified)",
+    "calibration_verified": false,
+    "calibration_reference": null
+  },
+  "wavelength_angstrom": null,
+  "allow_provisional": true,
+  "sample": {
+    "identifier": "Cd0.65Zn0.35S on CdS 11-20",
+    "substrate": {
+      "name": "CdS",
+      "crystal_structure": "wurtzite (reference model)",
+      "lattice": {
+        "system": "hexagonal",
+        "a": 4.136,
+        "c": 6.716
+      },
+      "reference": "Literature data for analysis/CIF/CdS.cif; cell lengths only, inconsistent CIF volume noted in Phase 1",
+      "composition": null,
+      "orientation": {
+        "surface_plane": [
+          1,
+          1,
+          -2,
+          0
+        ],
+        "in_plane_direction": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "reflections": [
+        [
+          1,
+          1,
+          -2,
+          0
+        ]
+      ]
+    },
+    "film": {
+      "name": "CdZnS",
+      "crystal_structure": "wurtzite (model assumption)",
+      "lattice": null,
+      "composition": {
+        "Zn_cation_fraction": 0.35
+      },
+      "reference": "Explicit relaxed linear Vegard model; repository CdS.cif and ZnS.cif",
+      "orientation": {
+        "surface_plane": [
+          1,
+          1,
+          -2,
+          0
+        ],
+        "in_plane_direction": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "reflections": [
+        [
+          1,
+          1,
+          -2,
+          0
+        ]
+      ],
+      "vegard": {
+        "first": {
+          "system": "hexagonal",
+          "a": 4.136,
+          "c": 6.716
+        },
+        "second": {
+          "system": "hexagonal",
+          "a": 3.80579647,
+          "c": 6.23798163
+        },
+        "fraction_second": 0.35
+      }
+    },
+    "frame_alignment": {
+      "map_frame": "nominal coplanar (mounting unverified)",
+      "sample_to_map": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "verified": false,
+      "reference": "Provisional identity: sample +z along (11-20) normal and +y along [0001]; instrument mounting and zeroes unverified.",
+      "allow_provisional": true
+    }
+  },
+  "plot": {
+    "theoretical_overlays": true,
+    "mode": "points",
+    "intensity_scale": "log",
+    "dynamic_range_decades": 4,
+    "components": [
+      1,
+      2
+    ],
+    "plane_tolerance": 0.01,
+    "title": "Cd0.65Zn0.35S / CdS (11-20) - provisional Vegard model"
+  }
+}

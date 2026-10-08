@@ -60,6 +60,9 @@ def calculate_rsm(measurement: Measurement, config: RSMConfiguration) -> RSM:
                    "wavelength_source":"explicit" if config.wavelength_angstrom is not None else measurement.metadata.get("wavelength_source","measurement"),
                    "wavelength_override_reason":config.wavelength_override_reason,"sample":sample,
                    "intensity_processing":"none","q_units":"angstrom^-1; 2pi convention"}
+    if config.sample_settings is not None:
+        configuration["sample_settings"]=config.sample_settings
+    configuration["plot_settings"]=config.plot_settings
     return RSM(measurement,q,float(wavelength),geometry.frame,not geometry.calibration_verified,configuration,tuple(notes))
 
 

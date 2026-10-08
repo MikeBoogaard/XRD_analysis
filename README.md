@@ -19,6 +19,14 @@ The example processes **both actual paired measurements** in [new_data](new_data
 
 ## Python API
 
+For one editable run file, use [examples/cdzns_on_cds.json](examples/cdzns_on_cds.json) and the [configuration guide](docs/run_configuration.md). It includes both phases, lattice/composition, orientations, reflection lists, frame alignment, instrument and plot settings. Unknown specimen values are null. Theoretical markers are disabled until those values are supplied; no Zn concentration or mounting is guessed.
+
+```powershell
+.venv/Scripts/python -m rsm_toolkit map "new_data/22-40_RSM_S0159.raw" --config "examples/cdzns_on_cds.json" --output "outputs/cdzns_configured.png"
+```
+
+Enable `plot.theoretical_overlays` after completing the metadata. The command saves distinguishable substrate/film markers and their numerical predictions in the JSON sidecar. Missing alignment or off-plane reflections produce an explicit error. Geometry-only configuration files remain supported.
+
 ```python
 from rsm_toolkit import (
     Material, Sample, RSMConfiguration, CoplanarGeometry,
@@ -59,3 +67,13 @@ The second command also writes NPZ + JSON. `--mode grid` performs a documented b
 - Strict errors for unsupported binary/schema variants, missing geometry, missing wavelength and one-dimensional scans passed to the 2D mapper.
 
 Read [coordinate conventions](docs/coordinates.md), [format support](docs/file_formats.md), [experimental results and limitations](docs/experimental_report.md), and [numerical export format](docs/data_format.md). The tests distinguish mathematical correctness and cross-format consistency from experimental calibration.
+
+## Repository layout
+
+- [src/rsm_toolkit](src/rsm_toolkit): active readers, geometry, crystals, overlays, plotting and CLI.
+- [examples](examples), [tests](tests), [docs](docs): configurations, validation and usage.
+- [new_data](new_data), historical data directories and [reference files](<Literature data for analysis>): preserved inputs.
+- [analysis_docs](analysis_docs): unchanged Phase 1 scientific analysis.
+- [outputs](outputs): generated figures, arrays and reports.
+
+Retired notebooks/modules were removed from the active tree after byte-verified archiving. See [cleanup record](docs/legacy_cleanup.md), [notebook scientific content](docs/legacy_notebook_content.md) and [complete original source archive](docs/legacy_source.zip). Phase 1 source paths and line numbers refer to the matching archive entries; unpack into a separate directory to inspect them. Do not rerun the historical audit against the rebuilt tree to overwrite its evidence.

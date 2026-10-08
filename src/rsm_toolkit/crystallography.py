@@ -166,6 +166,8 @@ class Reflection:
     q: np.ndarray
     frame: str
     status: str = "geometric vector; structure-factor allowance unknown"
+    marker: str = "x"
+    color: str = "red"
 
 
 def reflection_position(material:Material,indices,orientation:Orientation,*,frame:str) -> Reflection:

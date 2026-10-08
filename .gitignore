@@ -6,3 +6,7 @@ __pycache__/
 build/
 dist/
 outputs/.mplconfig/
+outputs/wheels/
+.ruff_cache/
+.coverage
+htmlcov/

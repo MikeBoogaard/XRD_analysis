@@ -1,0 +1,16 @@
+{
+  "Modules/Colorsheme.py": "45b8ecade849bb55491a03b9321714d4ba1fbe6244f797e876c8225a3d2c8185",
+  "Modules/data_analysis.py": "fd6d8bfb499ef83ab6db3f5a6490f6199e3b886414e205fc73b55c92b48d3188",
+  "Modules/data_procesing.py": "93326f63106301dfce86d2c925f6db55f546637b1595841abbec659080c026c6",
+  "Modules/fitting.py": "c2a8830376a79cca1372a61bb892644baae3c1a7b97a3d050d7e9b18359c2905",
+  "Modules/geometry.py": "385ca3227be8d6f10f08e6812ad6a0a5136d30d7e2d798efb3f84f7b9b01c7c4",
+  "Modules/line_scan.py": "28964e6807425f8e82c350d0a94600a1a269b2a1e58e349dacfe2859dd2354f2",
+  "Modules/plotting.py": "10809d0c1577c1cca00d75019e833174dc6429a399fd39bb0e526ff68e4baad5",
+  "Modules/theory.py": "7b3965b07c44a357d93f7fc362aecf8819d6de6cb3436c89116e6cde5797c7d1",
+  "RSM_main.ipynb": "7a00fb7c6d935e3b57cad27cabd59e999431a2fd5c723c0c670bb9a5c900baec",
+  "Theoretical_RSM_main.ipynb": "b623fc4eba77a88e3144e8e24bf29dfe1b862f7fe29a906e1135ca383ad1bc8e",
+  "__pycache__/data_procesing.cpython-311.pyc": "fc3a23e88edb5bfc4b22d529382667326d0f500ccdf0769d2795d2cffd02bc23",
+  "__pycache__/fitting.cpython-311.pyc": "27c8832f338d518eb4e30eea4834c427e636190ff13223ddd583f0243160d49d",
+  "__pycache__/functions.cpython-311.pyc": "1fe7f2bee89d14bb9ae91b85dd77c9024423c0c3fc2e8f1300a37cc983250f78",
+  "__pycache__/plotting.cpython-311.pyc": "1b412602df4b93089a678c8c090f30660a474bc95148c5ef78d21e49f1c4e968"
+}

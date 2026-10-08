@@ -7,6 +7,7 @@ from .io import load_xrd, load_dat, load_brml, load_raw
 from .io.export import export_data, load_export
 from .processing import calculate_rsm, grid_rsm, count_rate, brightest_point, angular_profile, fit_gaussian_profile
 from .plotting import plot_rsm, save_figure
+from .overlays import configured_reflections, plot_configured_rsm
 from .errors import RSMError, FormatError, UnsupportedFormatError, MissingMetadataError
 
 __version__ = "0.1.0"
