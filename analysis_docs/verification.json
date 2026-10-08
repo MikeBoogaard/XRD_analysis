@@ -1,0 +1,29 @@
+{
+  "original_file_count": 38,
+  "changed_originals": [],
+  "required_document_count": 9,
+  "checked_links": 290,
+  "invalid_links_or_lines": [],
+  "CIF_volume_checks": {
+    "CdS.cif": {
+      "metric_volume_A3": 99.49525727012895,
+      "declared_volume_A3": 102.03892544
+    },
+    "Ge_mp-32_conventional_standard.cif": {
+      "metric_volume_A3": 191.38798043828308,
+      "declared_volume_A3": 191.38798044
+    },
+    "Hex_Ge_100_paper.cif": {
+      "metric_volume_A3": 90.47681557587234,
+      "declared_volume_A3": 95.0454714981
+    },
+    "ZnS.cif": {
+      "metric_volume_A3": 78.24666586892243,
+      "declared_volume_A3": 78.24666575
+    },
+    "ZnS_WZ_mp-560588_conventional_standard.cif": {
+      "metric_volume_A3": 81.02245696908638,
+      "declared_volume_A3": 81.02245696
+    }
+  }
+}

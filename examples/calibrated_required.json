@@ -1,0 +1,6 @@
+{
+  "geometry": null,
+  "wavelength_angstrom": null,
+  "allow_provisional": false,
+  "notes": "REQUIRED: provide geometry with documented motor axes/signs/order and calibrated angular offsets. Set calibration_verified only with a calibration_reference. Wavelength can come from reliable used-wavelength metadata. Supply Sample orientations/lattices through Python for crystal overlays. This template deliberately cannot produce a calibrated map as supplied."
+}

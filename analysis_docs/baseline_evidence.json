@@ -1,0 +1,620 @@
+{
+  "python": "3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:20:11) [MSC v.1938 64 bit (AMD64)]",
+  "files": {
+    "__pycache__/data_procesing.cpython-311.pyc": {
+      "bytes": 198,
+      "sha256": "fc3a23e88edb5bfc4b22d529382667326d0f500ccdf0769d2795d2cffd02bc23"
+    },
+    "__pycache__/fitting.cpython-311.pyc": {
+      "bytes": 191,
+      "sha256": "27c8832f338d518eb4e30eea4834c427e636190ff13223ddd583f0243160d49d"
+    },
+    "__pycache__/functions.cpython-311.pyc": {
+      "bytes": 11019,
+      "sha256": "1fe7f2bee89d14bb9ae91b85dd77c9024423c0c3fc2e8f1300a37cc983250f78"
+    },
+    "__pycache__/plotting.cpython-311.pyc": {
+      "bytes": 192,
+      "sha256": "1b412602df4b93089a678c8c090f30660a474bc95148c5ef78d21e49f1c4e968"
+    },
+    "Literature data for analysis/CIF/CdS.cif": {
+      "bytes": 1043,
+      "sha256": "0402d441da156bd7623b351ecd33525b9c0fb9efe565c948b48c7e31fa3ecddb"
+    },
+    "Literature data for analysis/CIF/Ge_mp-32_conventional_standard.cif": {
+      "bytes": 1059,
+      "sha256": "41df886302388542aab12e5cd76bc7f5b0d1eb6342595018a909e3ab45192111"
+    },
+    "Literature data for analysis/CIF/Hex_Ge_100_paper.cif": {
+      "bytes": 824,
+      "sha256": "eaa187370aa16676070458c825cdf3551b67ae7411e8d83e9d841e33d71e50ac"
+    },
+    "Literature data for analysis/CIF/ZnS.cif": {
+      "bytes": 1057,
+      "sha256": "c38c338cab2f6fc7f378219656e30efc1bb916877f6780639d3c31e3c59d1644"
+    },
+    "Literature data for analysis/CIF/ZnS_WZ_mp-560588_conventional_standard.cif": {
+      "bytes": 854,
+      "sha256": "d71d4f179115ad8d739be5f7bfa1c8849331ce4998eb4a1823befcd0be160400"
+    },
+    "Literature data for analysis/Reflections.xlsx": {
+      "bytes": 11102,
+      "sha256": "3732b15c84786c5e1ae5c9a0201b83c5e0f34af3e449a28f00e8029205ced4b3"
+    },
+    "Modules/__pycache__/Colorsheme.cpython-311.pyc": {
+      "bytes": 3936,
+      "sha256": "6d0bedc162600b39adef3be16d1e3ebbe00929c66255bcebef1df1113a4bdff7"
+    },
+    "Modules/__pycache__/crystal_defenitions.cpython-311.pyc": {
+      "bytes": 3741,
+      "sha256": "0dbdeb3f59d94c85b4735432615c3b8027a5bbb302fb115cb7f6efe41ca4086b"
+    },
+    "Modules/__pycache__/data_analysis.cpython-311.pyc": {
+      "bytes": 3860,
+      "sha256": "8a0a47f3b31fcfce938ebb2c46f55aa363d5b0f266510cb3c5d5f72d99998568"
+    },
+    "Modules/__pycache__/data_procesing.cpython-311.pyc": {
+      "bytes": 9709,
+      "sha256": "dfcd3c143867603593e4509ab2af2130849e1ba9668e92c606511d34bca0e4ed"
+    },
+    "Modules/__pycache__/findCOM.cpython-311.pyc": {
+      "bytes": 3651,
+      "sha256": "34a5c2eec4d95b11a57b7b6d007747af2d62a7d3432ded2e2f902c123009d1d8"
+    },
+    "Modules/__pycache__/fitting.cpython-311.pyc": {
+      "bytes": 5973,
+      "sha256": "fa529705aa927c5f0411fa75a19e2b9052be0b3b0c3be72b42840b3172978279"
+    },
+    "Modules/__pycache__/fitting_models.cpython-311.pyc": {
+      "bytes": 9366,
+      "sha256": "03e56ab3278b8a6e512d680372f8b998ce246596c07ffb787b359c7d9f6a17c3"
+    },
+    "Modules/__pycache__/functions.cpython-311.pyc": {
+      "bytes": 664,
+      "sha256": "09262af0b7b817619d66ac819622a50b348496a38ebce5603b25bdfc6ce09819"
+    },
+    "Modules/__pycache__/geometry.cpython-310.pyc": {
+      "bytes": 1755,
+      "sha256": "b4082c4feef987fd8c0ba8afb1c47ec7f1902f4140b336ed0f5fe57563604e73"
+    },
+    "Modules/__pycache__/geometry.cpython-311.pyc": {
+      "bytes": 3836,
+      "sha256": "861c3048c7fd694a889280629caeffcff8d263928e66be92afa52ab33652d579"
+    },
+    "Modules/__pycache__/line_scan.cpython-311.pyc": {
+      "bytes": 2204,
+      "sha256": "fd602275915dd70c17753141ff14e6d11a81858104a6ac2d7d1fc35a4f69399e"
+    },
+    "Modules/__pycache__/linetrace.cpython-311.pyc": {
+      "bytes": 5328,
+      "sha256": "39c74487c5948da6cfcd4751f0dfa5cbc7304061d005ab94c2ce0c6440e7f537"
+    },
+    "Modules/__pycache__/plotting.cpython-311.pyc": {
+      "bytes": 11447,
+      "sha256": "770fe19496f895eeed63c765ecfaded83cc4da7efb9fabfe8d490ba8cee1b9ac"
+    },
+    "Modules/__pycache__/spot_analysis.cpython-311.pyc": {
+      "bytes": 4538,
+      "sha256": "39a5d61cf8cd3017bd3e379718f6ca3f2186de7124ca30d8a6e8354730cadbba"
+    },
+    "Modules/__pycache__/theory.cpython-311.pyc": {
+      "bytes": 2747,
+      "sha256": "087e4b90c3f7dcc616032f60f40c8643d2c67171a522ba1fd3c43c4429d5f51b"
+    },
+    "Modules/Colorsheme.py": {
+      "bytes": 1921,
+      "sha256": "45b8ecade849bb55491a03b9321714d4ba1fbe6244f797e876c8225a3d2c8185"
+    },
+    "Modules/data_analysis.py": {
+      "bytes": 1720,
+      "sha256": "fd6d8bfb499ef83ab6db3f5a6490f6199e3b886414e205fc73b55c92b48d3188"
+    },
+    "Modules/data_procesing.py": {
+      "bytes": 6968,
+      "sha256": "93326f63106301dfce86d2c925f6db55f546637b1595841abbec659080c026c6"
+    },
+    "Modules/fitting.py": {
+      "bytes": 4515,
+      "sha256": "c2a8830376a79cca1372a61bb892644baae3c1a7b97a3d050d7e9b18359c2905"
+    },
+    "Modules/geometry.py": {
+      "bytes": 2354,
+      "sha256": "385ca3227be8d6f10f08e6812ad6a0a5136d30d7e2d798efb3f84f7b9b01c7c4"
+    },
+    "Modules/line_scan.py": {
+      "bytes": 1426,
+      "sha256": "28964e6807425f8e82c350d0a94600a1a269b2a1e58e349dacfe2859dd2354f2"
+    },
+    "Modules/plotting.py": {
+      "bytes": 10870,
+      "sha256": "10809d0c1577c1cca00d75019e833174dc6429a399fd39bb0e526ff68e4baad5"
+    },
+    "Modules/theory.py": {
+      "bytes": 1633,
+      "sha256": "7b3965b07c44a357d93f7fc362aecf8819d6de6cb3436c89116e6cde5797c7d1"
+    },
+    "RSM_main.ipynb": {
+      "bytes": 7008,
+      "sha256": "7a00fb7c6d935e3b57cad27cabd59e999431a2fd5c723c0c670bb9a5c900baec"
+    },
+    "S0154/MatCdSS0154_Temp300_Norm10-10_RSM30-32_InPlane000-1_omscan=abs.dat": {
+      "bytes": 15823446,
+      "sha256": "4992b171342d82613e4a1737c59a69af4e257c2928cb6ecb1a45b706dd5a7f92"
+    },
+    "S0183/MatCdSS0183_Temp200_Norm10-10_RSM22-40_InPlane1-120_omscan=abs.dat": {
+      "bytes": 18636911,
+      "sha256": "821aaca178e73a927fc84b03ec7efb5441ab9446b999c02fbacf9880897416ec"
+    },
+    "Theoretical_RSM_main.ipynb": {
+      "bytes": 577,
+      "sha256": "b623fc4eba77a88e3144e8e24bf29dfe1b862f7fe29a906e1135ca383ad1bc8e"
+    },
+    "XRD data txt - for suplementary/10-10/K0203 -T_275deg/MatCdSK0203_Temp275_Norm10-10_RSM20-20_InPlane11-20_omscan=abs.dat": {
+      "bytes": 13648548,
+      "sha256": "7b64eda8b0dd7ca2e9e4e1511ead91b33e12998a170404902c58d09931953e1b"
+    }
+  },
+  "dependencies": {
+    "numpy": "2.2.5",
+    "scipy": "1.15.2",
+    "matplotlib": "3.10.1",
+    "pandas": "2.2.3",
+    "xrayutilities": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 32, in <module>\n    mod = importlib.import_module(name)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1324, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'xrayutilities'\n",
+    "lmfit": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 32, in <module>\n    mod = importlib.import_module(name)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1324, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'lmfit'\n"
+  },
+  "imports": {
+    "geometry": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 38, in <module>\n    importlib.import_module('Modules.' + name)\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\geometry.py\", line 2, in <module>\n    import xrayutilities as xu\nModuleNotFoundError: No module named 'xrayutilities'\n",
+    "data_procesing": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 38, in <module>\n    importlib.import_module('Modules.' + name)\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\data_procesing.py\", line 3, in <module>\n    import xrayutilities as xu\nModuleNotFoundError: No module named 'xrayutilities'\n",
+    "plotting": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 38, in <module>\n    importlib.import_module('Modules.' + name)\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\plotting.py\", line 2, in <module>\n    import xrayutilities as xu\nModuleNotFoundError: No module named 'xrayutilities'\n",
+    "fitting": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 38, in <module>\n    importlib.import_module('Modules.' + name)\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\fitting.py\", line 4, in <module>\n    from Modules import geometry\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\geometry.py\", line 2, in <module>\n    import xrayutilities as xu\nModuleNotFoundError: No module named 'xrayutilities'\n",
+    "theory": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 38, in <module>\n    importlib.import_module('Modules.' + name)\n  File \"C:\\Users\\20202835\\AppData\\Local\\miniconda3\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\theory.py\", line 1, in <module>\n    from Modules import geometry\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\geometry.py\", line 2, in <module>\n    import xrayutilities as xu\nModuleNotFoundError: No module named 'xrayutilities'\n",
+    "line_scan": "success",
+    "data_analysis": "success",
+    "Colorsheme": "success"
+  },
+  "datasets": {
+    "S0154/MatCdSS0154_Temp300_Norm10-10_RSM30-32_InPlane000-1_omscan=abs.dat": {
+      "shape": [
+        572877,
+        3
+      ],
+      "dtypes": [
+        "float64",
+        "float64",
+        "float64"
+      ],
+      "min": [
+        23.0,
+        81.615055,
+        -2144047674.0
+      ],
+      "max": [
+        29.0,
+        100.381277,
+        2144047674.0
+      ],
+      "nonfinite": 0,
+      "negative_intensity": 24684,
+      "zero_intensity": 469382,
+      "unique_omega": 1201,
+      "omega_step_min_max": [
+        0.004999999999999005,
+        0.005000000000002558
+      ],
+      "rows_per_omega_min_max": [
+        477,
+        477
+      ],
+      "unique_tt": 572877,
+      "duplicate_angle_pairs": 0,
+      "first_row": [
+        23.0,
+        81.615055,
+        0.0
+      ],
+      "last_row": [
+        29.0,
+        100.381277,
+        0.0
+      ],
+      "minimum_intensity_line": 7019,
+      "maximum_intensity_line": 1323,
+      "first_omega_tt_range": [
+        81.615055,
+        88.381277
+      ],
+      "last_omega_tt_range": [
+        93.615055,
+        100.381277
+      ],
+      "rounded_tt_unique": 171291,
+      "COM_dense_matrix_bytes": 1645763928
+    },
+    "S0183/MatCdSS0183_Temp200_Norm10-10_RSM22-40_InPlane1-120_omscan=abs.dat": {
+      "shape": [
+        527379,
+        3
+      ],
+      "dtypes": [
+        "float64",
+        "float64",
+        "float64"
+      ],
+      "min": [
+        17.5,
+        91.6008731861438,
+        0.0
+      ],
+      "max": [
+        23.0,
+        109.395458106516,
+        41848.7890625
+      ],
+      "nonfinite": 0,
+      "negative_intensity": 0,
+      "zero_intensity": 223918,
+      "unique_omega": 1101,
+      "omega_step_min_max": [
+        0.004999999999999005,
+        0.005000000000002558
+      ],
+      "rows_per_omega_min_max": [
+        479,
+        479
+      ],
+      "unique_tt": 527379,
+      "duplicate_angle_pairs": 0,
+      "first_row": [
+        17.5,
+        91.6008731861438,
+        0.0
+      ],
+      "last_row": [
+        23.0,
+        109.395458106516,
+        0.0
+      ],
+      "minimum_intensity_line": 1,
+      "maximum_intensity_line": 63469,
+      "first_omega_tt_range": [
+        91.6008731861438,
+        98.3954581065159
+      ],
+      "last_omega_tt_range": [
+        102.600873186144,
+        109.395458106516
+      ],
+      "rounded_tt_unique": 161389,
+      "COM_dense_matrix_bytes": 1421514312
+    },
+    "XRD data txt - for suplementary/10-10/K0203 -T_275deg/MatCdSK0203_Temp275_Norm10-10_RSM20-20_InPlane11-20_omscan=abs.dat": {
+      "shape": [
+        335779,
+        3
+      ],
+      "dtypes": [
+        "float64",
+        "float64",
+        "float64"
+      ],
+      "min": [
+        22.5,
+        48.6008731861438,
+        0.0
+      ],
+      "max": [
+        29.5,
+        55.3954581065159,
+        482172.90625
+      ],
+      "nonfinite": 0,
+      "negative_intensity": 0,
+      "zero_intensity": 2,
+      "unique_omega": 701,
+      "omega_step_min_max": [
+        0.00999999999999801,
+        0.010000000000001563
+      ],
+      "rows_per_omega_min_max": [
+        479,
+        479
+      ],
+      "unique_tt": 479,
+      "duplicate_angle_pairs": 0,
+      "first_row": [
+        22.5,
+        48.6008731861438,
+        5.00930023193359
+      ],
+      "last_row": [
+        29.5,
+        55.3954581065159,
+        7.00939989089966
+      ],
+      "minimum_intensity_line": 21055,
+      "maximum_intensity_line": 142429,
+      "first_omega_tt_range": [
+        48.6008731861438,
+        55.3954581065159
+      ],
+      "last_omega_tt_range": [
+        48.6008731861438,
+        55.3954581065159
+      ],
+      "rounded_tt_unique": 479,
+      "COM_dense_matrix_bytes": 2686232
+    }
+  },
+  "workbook": {
+    "sheets": [
+      {
+        "name": "Sheet1",
+        "sheetId": "1",
+        "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id": "rId1"
+      }
+    ],
+    "xl/worksheets/sheet1.xml": {
+      "A1": {
+        "value": "Material",
+        "formula": null
+      },
+      "B1": {
+        "value": "Reflection",
+        "formula": null
+      },
+      "C1": {
+        "value": "Omega",
+        "formula": null
+      },
+      "D1": {
+        "value": "2 theta",
+        "formula": null
+      },
+      "A2": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B2": {
+        "value": "11-20",
+        "formula": null
+      },
+      "C2": {
+        "value": "21.869",
+        "formula": null
+      },
+      "D2": {
+        "value": "43.738",
+        "formula": null
+      },
+      "A3": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B3": {
+        "value": "22-40",
+        "formula": null
+      },
+      "C3": {
+        "value": "48.156500000000001",
+        "formula": null
+      },
+      "D3": {
+        "value": "96.313000000000002",
+        "formula": null
+      },
+      "A4": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B4": {
+        "value": "2-1-10",
+        "formula": null
+      },
+      "C4": {
+        "value": "23.785",
+        "formula": null
+      },
+      "D4": {
+        "value": "0",
+        "formula": null
+      },
+      "A5": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B5": {
+        "value": "03-30",
+        "formula": null
+      },
+      "C5": {
+        "value": "12.0304",
+        "formula": null
+      },
+      "A6": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B6": {
+        "value": "10-10",
+        "formula": null
+      },
+      "C6": {
+        "value": "12.418699999999999",
+        "formula": null
+      },
+      "D6": {
+        "value": "24.837399999999999",
+        "formula": null
+      },
+      "A7": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B7": {
+        "value": "20-20",
+        "formula": null
+      },
+      "C7": {
+        "value": "25.474399999999999",
+        "formula": null
+      },
+      "D7": {
+        "value": "50.948799999999999",
+        "formula": null
+      },
+      "A8": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B8": {
+        "value": "30-30",
+        "formula": null
+      },
+      "C8": {
+        "value": "40.177799999999998",
+        "formula": null
+      },
+      "D8": {
+        "value": "80.355699999999999",
+        "formula": null
+      },
+      "A9": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B9": {
+        "value": "22-4-2",
+        "formula": null
+      },
+      "C9": {
+        "value": "34.098999999999997",
+        "formula": null
+      },
+      "D9": {
+        "value": "102.4273",
+        "formula": null
+      },
+      "A10": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B10": {
+        "value": "12-30",
+        "formula": null
+      },
+      "C10": {
+        "value": "23.785699999999999",
+        "formula": null
+      },
+      "D10": {
+        "value": "69.358199999999997",
+        "formula": null
+      },
+      "A11": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B11": {
+        "value": "21-30",
+        "formula": null
+      },
+      "C11": {
+        "value": "23.785699999999999",
+        "formula": null
+      },
+      "D11": {
+        "value": "69.358199999999997",
+        "formula": null
+      },
+      "A12": {
+        "value": "LiNbO3",
+        "formula": null
+      },
+      "B12": {
+        "value": "0006",
+        "formula": null
+      },
+      "C12": {
+        "value": "19.470500000000001",
+        "formula": null
+      },
+      "D12": {
+        "value": "38.941000000000003",
+        "formula": null
+      },
+      "A13": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B13": {
+        "value": "10-15",
+        "formula": null
+      },
+      "C13": {
+        "value": "39",
+        "formula": null
+      },
+      "D13": {
+        "value": "78.184899999999999",
+        "formula": null
+      },
+      "A14": {
+        "value": "CdS",
+        "formula": null
+      },
+      "B14": {
+        "value": "0002",
+        "formula": null
+      },
+      "C14": {
+        "value": "18",
+        "formula": null
+      },
+      "D14": {
+        "value": "36",
+        "formula": null
+      }
+    }
+  },
+  "checks": {
+    "mean_strip": [
+      [
+        0
+      ],
+      [
+        3.0
+      ]
+    ],
+    "zero_com": "Traceback (most recent call last):\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\analysis_docs\\audit_baseline.py\", line 88, in <module>\n    try: report['checks'][label] = list(data_analysis.find_max_tt_om(a,None,None))\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\Modules\\data_analysis.py\", line 52, in find_max_tt_om\n    i = int(round(com_row))\n            ^^^^^^^^^^^^^^\nValueError: cannot convert float NaN to integer\n",
+    "single_com": [
+      4.0,
+      2.0
+    ],
+    "missing_filename_tokens": {
+      "read_key_reflection": "her.da",
+      "read_sampleID": ".da",
+      "read_inplane_direction": "da",
+      "read_Temp": "er.da",
+      "read_Norm": "er.da"
+    }
+  },
+  "independent_physics": {
+    "hc_eV_A": 12398.419843320025,
+    "wavelength_A": 1.5405974108849654,
+    "theory_300": {
+      "CdS": {
+        "Q_A^-1": 5.2624739774687175,
+        "theta_deg": 40.17787638432716,
+        "tt_deg": 80.35575276865433,
+        "omega_theta_minus_30_deg": 10.177876384327163
+      },
+      "Ge": {
+        "Q_A^-1": 5.4611949243032525,
+        "theta_deg": 42.03043598681558,
+        "tt_deg": 84.06087197363117,
+        "omega_theta_minus_30_deg": 12.030435986815583
+      }
+    }
+  },
+  "original_files_unchanged": true
+}

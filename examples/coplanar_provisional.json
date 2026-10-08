@@ -1,0 +1,17 @@
+{
+  "geometry": {
+    "type": "coplanar",
+    "omega_motor": "Theta",
+    "detector_motor": "TwoTheta",
+    "omega_sign": 1,
+    "detector_sign": 1,
+    "omega_offset_deg": 0.0,
+    "detector_offset_deg": 0.0,
+    "frame": "nominal coplanar (mounting unverified)",
+    "calibration_verified": false,
+    "calibration_reference": null
+  },
+  "wavelength_angstrom": null,
+  "allow_provisional": true,
+  "notes": "Method wavelength is read from the measurement. Positive omega/2theta convention follows the declared coplanar scan as a provisional model. Zero added offsets mean no extra correction, not proven instrument zeroes. Chi/Phi mounting and sample surface remain unresolved; no reflection indices or lattice parameters are inferred."
+}

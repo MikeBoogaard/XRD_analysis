@@ -1,0 +1,458 @@
+{
+  "sample_context": "CdZnS film on CdS, supplied by user; not inferred from filenames",
+  "orientation": null,
+  "reflection_indices": null,
+  "film_composition": null,
+  "software_python": "3.12.3 | packaged by conda-forge | (main, Apr 15 2024, 18:20:11) [MSC v.1938 64 bit (AMD64)]",
+  "numpy": "2.2.5",
+  "matplotlib": "3.10.1",
+  "plot_settings": {
+    "mode": "points",
+    "scale": "log",
+    "cmap": "viridis",
+    "dynamic_range_decades": 4
+  },
+  "measurements": [
+    {
+      "brml": {
+        "source": {
+          "path": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\new_data\\22-40_RSM_S0159.brml",
+          "sha256": "009278a6afb96ec7a6833a038f748a4b8bd3d900c2fcbd18bfeac7718f03667f",
+          "format": "Bruker BRML",
+          "reader": "brml-xml-eiger-v1"
+        },
+        "shape": [
+          1401,
+          477
+        ],
+        "intensity_unit": "recorded counts",
+        "intensity_range": [
+          0.0,
+          1272.08
+        ],
+        "nonpositive_intensities": 580180,
+        "wavelength_angstrom": 1.5406,
+        "motors": {
+          "Theta": {
+            "min": 17.5,
+            "max": 24.5,
+            "unit": "degree"
+          },
+          "TwoTheta": {
+            "min": 91.61505472960296,
+            "max": 112.38127673366336,
+            "unit": "degree"
+          },
+          "TwoThetaArm": {
+            "min": 95.0,
+            "max": 109.0,
+            "unit": "degree"
+          },
+          "Chi": {
+            "min": 0.3,
+            "max": 0.3,
+            "unit": "degree"
+          },
+          "Phi": {
+            "min": 0.51,
+            "max": 0.51,
+            "unit": "degree"
+          },
+          "BeamTranslation": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "TrackDistance": {
+            "min": 277.3857143,
+            "max": 277.3857143,
+            "unit": "mm"
+          },
+          "X": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "Y": {
+            "min": -0.01,
+            "max": -0.01,
+            "unit": "mm"
+          },
+          "Z": {
+            "min": 0.315,
+            "max": 0.315,
+            "unit": "mm"
+          }
+        },
+        "warnings": [
+          "Motor positions are targets; surface orientation and Chi/Phi calibration are not certified.",
+          "Recorded detector counts can be fractional after instrument ROI rebinning; no Poisson variance is inferred.",
+          "External memory codec is validated for DIFFRAC 8.6.2.0 Eiger2R_250K using paired RAW exports, not a universal BRML binary specification."
+        ],
+        "measurement_type": "UltraFastRSM"
+      },
+      "raw": {
+        "source": {
+          "path": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\new_data\\22-40_RSM_S0159.raw",
+          "sha256": "1e2bcf1b5b79a3a0d075af42e07bf03cf713ba91687656ce7e5adaa6d4db9aa0",
+          "format": "Bruker RAW4.00",
+          "reader": "raw4-psd-v1"
+        },
+        "shape": [
+          1401,
+          477
+        ],
+        "intensity_unit": "recorded counts",
+        "intensity_range": [
+          0.0,
+          1272.0799560546875
+        ],
+        "nonpositive_intensities": 580180,
+        "wavelength_angstrom": 1.5406,
+        "motors": {
+          "Chi": {
+            "min": 0.3,
+            "max": 0.3,
+            "unit": "degree"
+          },
+          "Phi": {
+            "min": 0.51,
+            "max": 0.51,
+            "unit": "degree"
+          },
+          "BeamTranslation": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "TrackDistance": {
+            "min": 277.3857143,
+            "max": 277.3857143,
+            "unit": "mm"
+          },
+          "X-Drive": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "Y-Drive": {
+            "min": -0.01,
+            "max": -0.01,
+            "unit": "mm"
+          },
+          "Z-Drive": {
+            "min": 0.315,
+            "max": 0.315,
+            "unit": "mm"
+          },
+          "Theta": {
+            "min": 17.5,
+            "max": 24.5,
+            "unit": "degree"
+          },
+          "TwoThetaArm": {
+            "min": 95.0,
+            "max": 109.0,
+            "unit": "degree"
+          },
+          "TwoTheta": {
+            "min": 91.61505472960296,
+            "max": 112.38127673366337,
+            "unit": "degree"
+          }
+        },
+        "warnings": [
+          "RAW4 PSD Fix Scan semantics checked on paired BRML exports; other RAW modes are unsupported.",
+          "Instrument zeroes and sample orientation are not established by RAW motor positions.",
+          "Unknown RAW metadata segments are indexed by source byte offset, not interpreted."
+        ],
+        "measurement_type": "detector_stack"
+      },
+      "paired_float32_intensities_identical": true,
+      "maximum_Q_difference_angstrom_inverse": 3.1086244689504383e-15,
+      "maximum_intensity_export_rounding": 4.3945312427240424e-05,
+      "brightest_measured_bin": {
+        "method": "brightest measured bin; no phase assignment",
+        "index": [
+          129,
+          241
+        ],
+        "q_angstrom_inverse": [
+          0.0,
+          -3.0405827193619928,
+          5.262115000984339
+        ],
+        "intensity": 1272.08,
+        "intensity_unit": "recorded counts",
+        "motor_positions": {
+          "Theta": 18.145,
+          "TwoTheta": 96.33080998796127,
+          "TwoThetaArm": 96.29,
+          "Chi": 0.3,
+          "Phi": 0.51,
+          "BeamTranslation": -0.0,
+          "TrackDistance": 277.3857143,
+          "X": -0.0,
+          "Y": -0.01,
+          "Z": 0.315
+        },
+        "frame": "nominal coplanar (mounting unverified)",
+        "provisional": true
+      },
+      "outputs_stem": "cdzns_on_cds_rsm",
+      "warnings": [
+        "Motor positions are targets; surface orientation and Chi/Phi calibration are not certified.",
+        "Recorded detector counts can be fractional after instrument ROI rebinning; no Poisson variance is inferred.",
+        "External memory codec is validated for DIFFRAC 8.6.2.0 Eiger2R_250K using paired RAW exports, not a universal BRML binary specification.",
+        "PROVISIONAL: nominal/user-defined coordinates, not a calibrated crystal/surface frame.",
+        "Fixed Chi/Phi retained in measurement metadata but not applied: their axis order/zeroes require calibration. Qx=0 is a coplanar projection, not a measured transverse component."
+      ],
+      "configuration": {
+        "geometry": {
+          "type": "coplanar",
+          "omega_motor": "Theta",
+          "detector_motor": "TwoTheta",
+          "omega_sign": 1,
+          "detector_sign": 1,
+          "omega_offset_deg": 0.0,
+          "detector_offset_deg": 0.0,
+          "frame": "nominal coplanar (mounting unverified)",
+          "calibration_verified": false,
+          "calibration_reference": null
+        },
+        "wavelength_angstrom": 1.5406,
+        "wavelength_source": "FixedInformation/MethodInformation/InfoData/MethodAlignment/WaveLength (angstrom)",
+        "wavelength_override_reason": null,
+        "sample": {
+          "identifier": null,
+          "substrate": "CdS",
+          "film": "CdZnS",
+          "note": "Sample identities supplied by user; no lattice/orientation inferred for measured Q."
+        },
+        "intensity_processing": "none",
+        "q_units": "angstrom^-1; 2pi convention"
+      }
+    },
+    {
+      "brml": {
+        "source": {
+          "path": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\new_data\\2200_RSM_S0155.brml",
+          "sha256": "704844f8132221f6ed756dc60f82d176992a3d24ab264713c991aa8206932b02",
+          "format": "Bruker BRML",
+          "reader": "brml-xml-eiger-v1"
+        },
+        "shape": [
+          1401,
+          477
+        ],
+        "intensity_unit": "recorded counts",
+        "intensity_range": [
+          0.0,
+          1587.1501
+        ],
+        "nonpositive_intensities": 567056,
+        "wavelength_angstrom": 1.5406,
+        "motors": {
+          "Theta": {
+            "min": 17.5,
+            "max": 24.5,
+            "unit": "degree"
+          },
+          "TwoTheta": {
+            "min": 91.61505472960296,
+            "max": 112.38127673366336,
+            "unit": "degree"
+          },
+          "TwoThetaArm": {
+            "min": 95.0,
+            "max": 109.0,
+            "unit": "degree"
+          },
+          "Chi": {
+            "min": 0.44,
+            "max": 0.44,
+            "unit": "degree"
+          },
+          "Phi": {
+            "min": 90.0,
+            "max": 90.0,
+            "unit": "degree"
+          },
+          "BeamTranslation": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "TrackDistance": {
+            "min": 277.3857143,
+            "max": 277.3857143,
+            "unit": "mm"
+          },
+          "X": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "Y": {
+            "min": -0.01,
+            "max": -0.01,
+            "unit": "mm"
+          },
+          "Z": {
+            "min": 0.305,
+            "max": 0.305,
+            "unit": "mm"
+          }
+        },
+        "warnings": [
+          "Motor positions are targets; surface orientation and Chi/Phi calibration are not certified.",
+          "Recorded detector counts can be fractional after instrument ROI rebinning; no Poisson variance is inferred.",
+          "External memory codec is validated for DIFFRAC 8.6.2.0 Eiger2R_250K using paired RAW exports, not a universal BRML binary specification."
+        ],
+        "measurement_type": "UltraFastRSM"
+      },
+      "raw": {
+        "source": {
+          "path": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\new_data\\2200_RSM_S0155.raw",
+          "sha256": "df298e2014501fb1ba23c1bac108e682fe2bef2fb11a3bec2e6a148370059cca",
+          "format": "Bruker RAW4.00",
+          "reader": "raw4-psd-v1"
+        },
+        "shape": [
+          1401,
+          477
+        ],
+        "intensity_unit": "recorded counts",
+        "intensity_range": [
+          0.0,
+          1587.150146484375
+        ],
+        "nonpositive_intensities": 567056,
+        "wavelength_angstrom": 1.5406,
+        "motors": {
+          "Chi": {
+            "min": 0.44,
+            "max": 0.44,
+            "unit": "degree"
+          },
+          "Phi": {
+            "min": 90.0,
+            "max": 90.0,
+            "unit": "degree"
+          },
+          "BeamTranslation": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "TrackDistance": {
+            "min": 277.3857143,
+            "max": 277.3857143,
+            "unit": "mm"
+          },
+          "X-Drive": {
+            "min": -0.0,
+            "max": -0.0,
+            "unit": "mm"
+          },
+          "Y-Drive": {
+            "min": -0.01,
+            "max": -0.01,
+            "unit": "mm"
+          },
+          "Z-Drive": {
+            "min": 0.305,
+            "max": 0.305,
+            "unit": "mm"
+          },
+          "Theta": {
+            "min": 17.5,
+            "max": 24.5,
+            "unit": "degree"
+          },
+          "TwoThetaArm": {
+            "min": 95.0,
+            "max": 109.0,
+            "unit": "degree"
+          },
+          "TwoTheta": {
+            "min": 91.61505472960296,
+            "max": 112.38127673366337,
+            "unit": "degree"
+          }
+        },
+        "warnings": [
+          "RAW4 PSD Fix Scan semantics checked on paired BRML exports; other RAW modes are unsupported.",
+          "Instrument zeroes and sample orientation are not established by RAW motor positions.",
+          "Unknown RAW metadata segments are indexed by source byte offset, not interpreted."
+        ],
+        "measurement_type": "detector_stack"
+      },
+      "paired_float32_intensities_identical": true,
+      "maximum_Q_difference_angstrom_inverse": 3.1086244689504383e-15,
+      "maximum_intensity_export_rounding": 4.921875006402843e-05,
+      "brightest_measured_bin": {
+        "method": "brightest measured bin; no phase assignment",
+        "index": [
+          132,
+          237
+        ],
+        "q_angstrom_inverse": [
+          0.0,
+          -3.0373338253393523,
+          5.262518482432631
+        ],
+        "intensity": 1587.1501,
+        "intensity_unit": "recorded counts",
+        "motor_positions": {
+          "Theta": 18.16,
+          "TwoTheta": 96.30395097952378,
+          "TwoThetaArm": 96.32,
+          "Chi": 0.44,
+          "Phi": 90.0,
+          "BeamTranslation": -0.0,
+          "TrackDistance": 277.3857143,
+          "X": -0.0,
+          "Y": -0.01,
+          "Z": 0.305
+        },
+        "frame": "nominal coplanar (mounting unverified)",
+        "provisional": true
+      },
+      "outputs_stem": "cdzns_on_cds_rsm_02",
+      "warnings": [
+        "Motor positions are targets; surface orientation and Chi/Phi calibration are not certified.",
+        "Recorded detector counts can be fractional after instrument ROI rebinning; no Poisson variance is inferred.",
+        "External memory codec is validated for DIFFRAC 8.6.2.0 Eiger2R_250K using paired RAW exports, not a universal BRML binary specification.",
+        "PROVISIONAL: nominal/user-defined coordinates, not a calibrated crystal/surface frame.",
+        "Fixed Chi/Phi retained in measurement metadata but not applied: their axis order/zeroes require calibration. Qx=0 is a coplanar projection, not a measured transverse component."
+      ],
+      "configuration": {
+        "geometry": {
+          "type": "coplanar",
+          "omega_motor": "Theta",
+          "detector_motor": "TwoTheta",
+          "omega_sign": 1,
+          "detector_sign": 1,
+          "omega_offset_deg": 0.0,
+          "detector_offset_deg": 0.0,
+          "frame": "nominal coplanar (mounting unverified)",
+          "calibration_verified": false,
+          "calibration_reference": null
+        },
+        "wavelength_angstrom": 1.5406,
+        "wavelength_source": "FixedInformation/MethodInformation/InfoData/MethodAlignment/WaveLength (angstrom)",
+        "wavelength_override_reason": null,
+        "sample": {
+          "identifier": null,
+          "substrate": "CdS",
+          "film": "CdZnS",
+          "note": "Sample identities supplied by user; no lattice/orientation inferred for measured Q."
+        },
+        "intensity_processing": "none",
+        "q_units": "angstrom^-1; 2pi convention"
+      }
+    }
+  ],
+  "failed": []
+}
