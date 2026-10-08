@@ -16,14 +16,25 @@ class RSMConfiguration:
     allow_provisional: bool = False
     wavelength_override_reason: str | None = None
 
+    def __post_init__(self):
+        if type(self.allow_provisional) is not bool:
+            raise RSMError("allow_provisional must be a boolean, not text or a number.")
+
 
 def load_configuration(path: str | Path) -> RSMConfiguration:
     """JSON geometry configuration. Materials/orientations use the Python API."""
-    value=json.loads(Path(path).read_text(encoding="utf-8"))
+    try:
+        value=json.loads(Path(path).read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise RSMError(f"Invalid configuration JSON: {exc}") from exc
+    if not isinstance(value,dict):
+        raise RSMError("Configuration must be a JSON object.")
     allowed={"geometry","wavelength_angstrom","allow_provisional","wavelength_override_reason","notes"}
     unknown=set(value)-allowed
     if unknown:
         raise RSMError(f"Unknown configuration keys: {sorted(unknown)}")
+    if value.get("geometry") is not None and not isinstance(value["geometry"],dict):
+        raise RSMError("geometry must be an object or null.")
     geo=dict(value.get("geometry") or {})
     kind=geo.pop("type",None)
     try:

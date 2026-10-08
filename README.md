@@ -13,6 +13,8 @@ python -m venv .venv
 
 On POSIX use `.venv/bin/python`. Python 3.10+ is supported. Core dependencies: NumPy, SciPy, Matplotlib. See `requirements-tested.txt` for the tested dependency versions. The optional `[reference]` extra enables comparison against xrayutilities.
 
+To reproduce the tested dependency set, install `-r requirements-tested.txt` in a fresh environment, then install `-e . --no-deps --no-build-isolation`. The recorded environment is Windows/Python 3.12.3; other platforms have not been experimentally checked. For continuation status and the remaining calibration work, read [PROGRESS.md](PROGRESS.md).
+
 The example processes **both actual paired measurements** in [new_data](new_data), checks BRML against RAW, and writes plots, full numerical arrays and metadata to [outputs](outputs). It deliberately produces **provisional nominal-coplanar maps**: the wavelength and angle tables are recorded, but sample mounting, surface orientation and Chi/Phi calibration have not been established. No composition, lattice constants or reflection indices are invented. Original data and [Phase 1 analysis](analysis_docs) are preserved; legacy notebooks/modules are not part of the installed package.
 
 ## Python API

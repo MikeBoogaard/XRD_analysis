@@ -62,6 +62,8 @@ class CoplanarGeometry:
     calibration_reference: str | None = None
 
     def __post_init__(self):
+        if type(self.calibration_verified) is not bool:
+            raise RSMError("calibration_verified must be a boolean, not text or a number.")
         if self.omega_sign not in (-1,1) or self.detector_sign not in (-1,1):
             raise RSMError("Motor signs must be +1 or -1.")
         if not np.isfinite([self.omega_offset_deg,self.detector_offset_deg]).all():
@@ -122,6 +124,8 @@ class VectorGeometry:
     calibration_reference: str | None = None
 
     def __post_init__(self):
+        if type(self.calibration_verified) is not bool:
+            raise RSMError("calibration_verified must be a boolean, not text or a number.")
         for v in (self.incident_direction,self.detector_zero_direction):
             a=np.asarray(v,dtype=float)
             if a.shape!=(3,) or not np.isfinite(a).all() or not np.isclose(np.linalg.norm(a),1,atol=1e-12):
