@@ -35,7 +35,7 @@ def export_data(data:Measurement|RSM,path:str|Path) -> tuple[Path,Path]:
     if isinstance(data,RSM):
         arrays["q"]=data.q
         document["rsm"]={"wavelength_angstrom":data.wavelength_angstrom,"frame":data.frame,
-                          "provisional":data.provisional,"configuration":data.configuration,"warnings":list(data.warnings)}
+                          "configuration":data.configuration,"warnings":list(data.warnings)}
     path.parent.mkdir(parents=True,exist_ok=True)
     np.savez_compressed(path,**arrays)
     sidecar=path.with_suffix(".json")
@@ -58,7 +58,7 @@ def load_export(path:str|Path) -> Measurement|RSM:
                 raise FormatError("Intermediate shape mismatch.")
             if "rsm" not in d: return m
             r=d["rsm"]
-            return RSM(m,a["q"],r["wavelength_angstrom"],r["frame"],r["provisional"],r["configuration"],tuple(r["warnings"]))
+            return RSM(m,a["q"],r["wavelength_angstrom"],r["frame"],r.get("provisional",False),r["configuration"],tuple(r["warnings"]))
     except (KeyError,OSError,ValueError) as exc:
         if isinstance(exc,FormatError): raise
         raise FormatError(f"Invalid intermediate export: {exc}") from exc

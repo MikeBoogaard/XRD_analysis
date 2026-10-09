@@ -12,8 +12,8 @@ PAIRS=("22-40_RSM_S0159","2200_RSM_S0155")
 
 @pytest.mark.parametrize("stem",PAIRS)
 def test_real_paired_exports(stem):
-    b=load_xrd(ROOT/"new_data"/(stem+".brml"))
-    r=load_xrd(ROOT/"new_data"/(stem+".raw"))
+    b=load_xrd(ROOT/"example_data"/(stem+".brml"))
+    r=load_xrd(ROOT/"example_data"/(stem+".raw"))
     assert b.intensity.shape==r.intensity.shape==(1401,477)
     np.testing.assert_array_equal(b.intensity.astype(np.float32),r.intensity.astype(np.float32))
     for motor in ("Theta","TwoTheta","TwoThetaArm","Chi","Phi"):
@@ -25,7 +25,7 @@ def test_real_paired_exports(stem):
     assert r.metadata["ranges"][0]["scan_type"]=="PSD Fix Scan"
     assert not b.intensity.flags.writeable
     # Compare with the source bytes, independently of the common model.
-    with zipfile.ZipFile(ROOT/"new_data"/(stem+".brml")) as z:
+    with zipfile.ZipFile(ROOT/"example_data"/(stem+".brml")) as z:
         payload=z.read(next(n for n in z.namelist() if n.endswith(".bin")))
     np.testing.assert_array_equal(b.intensity.ravel(),np.frombuffer(payload,dtype="<f8"))
 
@@ -39,14 +39,14 @@ def test_unknown_raw_variants(tmp_path,magic):
 
 @pytest.mark.parametrize("cut",[12,65,1515,3000,-1])
 def test_truncated_raw(tmp_path,cut):
-    source=(ROOT/"new_data"/(PAIRS[0]+".raw")).read_bytes()
+    source=(ROOT/"example_data"/(PAIRS[0]+".raw")).read_bytes()
     p=tmp_path/"truncated.raw"
     p.write_bytes(source[:cut])
     with pytest.raises(FormatError):load_xrd(p)
 
 
 def test_bad_raw_lengths_and_scan_type(tmp_path):
-    original=(ROOT/"new_data"/(PAIRS[0]+".raw")).read_bytes()
+    original=(ROOT/"example_data"/(PAIRS[0]+".raw")).read_bytes()
     broken=bytearray(original)
     struct.pack_into("<I",broken,65,0)
     p=tmp_path/"bad.raw";p.write_bytes(broken)
@@ -69,7 +69,7 @@ def rewrite_brml(source,target,transform):
 
 
 def test_brml_missing_payload_and_unknown_profile(tmp_path):
-    source=ROOT/"new_data"/(PAIRS[0]+".brml")
+    source=ROOT/"example_data"/(PAIRS[0]+".brml")
     target=tmp_path/"unnamed.zip"
     rewrite_brml(source,target,lambda n,b:None if n.endswith(".bin") else b)
     with pytest.raises(FormatError):load_xrd(target)
@@ -78,7 +78,7 @@ def test_brml_missing_payload_and_unknown_profile(tmp_path):
 
 
 def test_brml_schema_axis_change_detected(tmp_path):
-    source=ROOT/"new_data"/(PAIRS[0]+".brml")
+    source=ROOT/"example_data"/(PAIRS[0]+".brml")
     target=tmp_path/"changed.brml"
     rewrite_brml(source,target,lambda n,b:b.replace(b"<Start>17.5</Start>",b"<Start>18.5</Start>") if n.endswith("RawData0.xml") else b)
     with pytest.raises(FormatError,match="disagrees"):load_xrd(target)
@@ -90,7 +90,7 @@ def test_invalid_archive(tmp_path):
 
 
 def test_filename_not_used(tmp_path):
-    source=ROOT/"new_data"/(PAIRS[0]+".raw")
+    source=ROOT/"example_data"/(PAIRS[0]+".raw")
     renamed=tmp_path/"arbitrary_name.bin";renamed.write_bytes(source.read_bytes())
     a,b=load_xrd(source),load_xrd(renamed)
     np.testing.assert_array_equal(a.intensity,b.intensity)

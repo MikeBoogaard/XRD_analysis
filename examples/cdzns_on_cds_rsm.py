@@ -43,7 +43,7 @@ def main(argv=None):
             "plot_settings":{"mode":args.mode,"scale":"log","cmap":"viridis","dynamic_range_decades":4},
             "measurements":[],"failed":[]}
     for i,name in enumerate(SOURCES):
-        path=ROOT/"new_data"/name
+        path=ROOT/"example_data"/name
         before={str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (path,path.with_suffix(".raw"))}
         brml=load_xrd(path)
         raw=load_xrd(path.with_suffix(".raw"))

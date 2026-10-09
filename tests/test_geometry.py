@@ -57,7 +57,7 @@ def test_offsets_and_signs():
 
 def test_configuration_failures(measurement):
     with pytest.raises(MissingMetadataError,match="geometry"): calculate_rsm(measurement,RSMConfiguration())
-    with pytest.raises(MissingMetadataError,match="calibration"): calculate_rsm(measurement,RSMConfiguration(CoplanarGeometry()))
+    assert np.isfinite(calculate_rsm(measurement,RSMConfiguration(CoplanarGeometry())).q).all()
     with pytest.raises(MissingMetadataError):CoplanarGeometry(calibration_verified=True)
     with pytest.raises(MissingMetadataError,match="wavelength"):
         calculate_rsm(replace(measurement,wavelength_angstrom=None),RSMConfiguration(CoplanarGeometry(),allow_provisional=True))

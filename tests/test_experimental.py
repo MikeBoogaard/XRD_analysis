@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 @pytest.mark.parametrize("name",["22-40_RSM_S0159","2200_RSM_S0155"])
 @pytest.mark.parametrize("extension",["brml","raw"])
 def test_actual_map_pipeline(name,extension,tmp_path):
-    source=ROOT/"new_data"/f"{name}.{extension}"
+    source=ROOT/"example_data"/f"{name}.{extension}"
     before=hashlib.sha256(source.read_bytes()).hexdigest()
     m=load_xrd(source)
     r=calculate_rsm(m,load_configuration(ROOT/"examples/coplanar_provisional.json"))

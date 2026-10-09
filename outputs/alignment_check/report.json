@@ -1,0 +1,301 @@
+{
+  "12-30": {
+    "source_sha256": "a34a71402ca979562fecef71cd8f139932488268c48272b587d7907775e1fb53",
+    "theoretical_omega_deg": 45.5725922184973,
+    "theoretical_two_theta_deg": 69.35839513873277,
+    "theoretical_alpha_deg": 10.893394649130913,
+    "fits": [
+      {
+        "half_window_deg": 0.2,
+        "omega_deg": 44.78021202518616,
+        "two_theta_deg": 69.32844801851488,
+        "points": 290,
+        "rms_fraction_of_max": 0.01777620618751683,
+        "parameters": [
+          1.2845868758019867,
+          0.020212025186161612,
+          0.011405793303860719,
+          0.022834280537982147,
+          0.024103559689656398,
+          0.5173194688357834,
+          0.00483117502449706
+        ],
+        "status": "empirical local fit; not phase identification",
+        "omega_only_correction_deg": 0.777406633202192,
+        "two_theta_residual_deg": -0.029947120217897805
+      },
+      {
+        "half_window_deg": 0.3,
+        "omega_deg": 44.78023087963806,
+        "two_theta_deg": 69.32846721557141,
+        "points": 645,
+        "rms_fraction_of_max": 0.01211363443322226,
+        "parameters": [
+          1.2729388799759993,
+          0.020230879638061163,
+          0.011424990360391341,
+          0.023149169532522346,
+          0.024301962384968262,
+          0.5209991650061483,
+          0.0023190887516215623
+        ],
+        "status": "empirical local fit; not phase identification",
+        "omega_only_correction_deg": 0.7773973772785556,
+        "two_theta_residual_deg": -0.02992792316136672
+      },
+      {
+        "half_window_deg": 0.4,
+        "omega_deg": 44.78023853797855,
+        "two_theta_deg": 69.32847498969753,
+        "points": 1197,
+        "rms_fraction_of_max": 0.008956685395683504,
+        "parameters": [
+          1.2685778433711323,
+          0.02023853797854811,
+          0.011432764486519422,
+          0.02327181242958931,
+          0.024381190972191068,
+          0.5223920936224928,
+          0.0013124607099066188
+        ],
+        "status": "empirical local fit; not phase identification",
+        "omega_only_correction_deg": 0.7773936060011284,
+        "two_theta_residual_deg": -0.029920149035248755
+      }
+    ],
+    "raw_alignment_fields": [
+      {
+        "type": 60,
+        "offset": 827,
+        "length": 76,
+        "name": "Theta",
+        "flag": 2,
+        "delta": 1.5
+      },
+      {
+        "type": 60,
+        "offset": 903,
+        "length": 76,
+        "name": "TwoTheta",
+        "flag": 2,
+        "delta": 1.0
+      },
+      {
+        "type": 60,
+        "offset": 979,
+        "length": 76,
+        "name": "Phi",
+        "flag": 2,
+        "delta": 2.0
+      },
+      {
+        "type": 60,
+        "offset": 1055,
+        "length": 76,
+        "name": "Detector",
+        "flag": 2,
+        "delta": 1.0
+      },
+      {
+        "type": 60,
+        "offset": 1131,
+        "length": 76,
+        "name": "Chi",
+        "flag": 2,
+        "delta": 0.75
+      },
+      {
+        "type": 60,
+        "offset": 1207,
+        "length": 76,
+        "name": "BeamTranslation",
+        "flag": 2,
+        "delta": 1.0
+      },
+      {
+        "type": 60,
+        "offset": 1283,
+        "length": 76,
+        "name": "X",
+        "flag": 2,
+        "delta": 10.0
+      },
+      {
+        "type": 60,
+        "offset": 1359,
+        "length": 76,
+        "name": "Y",
+        "flag": 2,
+        "delta": 10.0
+      },
+      {
+        "type": 60,
+        "offset": 1435,
+        "length": 76,
+        "name": "Z",
+        "flag": 2,
+        "delta": 1.0
+      }
+    ],
+    "fixed_phi_deg": -2.35,
+    "fixed_chi_deg": 0.48,
+    "q_before": [
+      0.0,
+      0.8148564844195824,
+      4.56719183902235
+    ],
+    "q_after": [
+      0.0,
+      0.8767478947107602,
+      4.5557156972042545
+    ],
+    "q_theory": [
+      -9.860761315262648e-32,
+      0.8770789962447867,
+      4.557436151242446
+    ],
+    "q_error_before": 0.06298265175345232,
+    "q_error_after": 0.001752024635490228
+  },
+  "11-20": {
+    "source_sha256": "7ccd6a69e4b03a07be1388b028d10ea55d3478e149dd9cfa8d9942120d61fe78",
+    "theoretical_omega_deg": 21.868985982101858,
+    "theoretical_two_theta_deg": 43.737971964203716,
+    "theoretical_alpha_deg": 0.0,
+    "fits": [
+      {
+        "half_window_deg": 0.2,
+        "omega_deg": 21.887925730000205,
+        "two_theta_deg": 43.74134055412417,
+        "points": 609,
+        "rms_fraction_of_max": 0.02285478801623952,
+        "parameters": [
+          0.9516284456405275,
+          0.007925730000207614,
+          0.00474843086466709,
+          0.047704671130608764,
+          0.020689761994723933,
+          -0.00039162476839817715,
+          0.007955689290812458
+        ],
+        "status": "empirical local fit; not phase identification",
+        "omega_only_correction_deg": -0.017255452938119475,
+        "two_theta_residual_deg": 0.0033685899204556335
+      },
+      {
+        "half_window_deg": 0.3,
+        "omega_deg": 21.887987867883655,
+        "two_theta_deg": 43.74134517438833,
+        "points": 1247,
+        "rms_fraction_of_max": 0.016373235585648505,
+        "parameters": [
+          0.9505344629496819,
+          0.007987867883657815,
+          0.004753051128823024,
+          0.04813096008571436,
+          0.020871299289043164,
+          -0.000454037497848113,
+          0.00431025002306651
+        ],
+        "status": "empirical local fit; not phase identification",
+        "omega_only_correction_deg": -0.017315280689491175,
+        "two_theta_residual_deg": 0.003373210184612674
+      },
+      {
+        "half_window_deg": 0.4,
+        "omega_deg": 21.8880176041379,
+        "two_theta_deg": 43.74134741370578,
+        "points": 2280,
+        "rms_fraction_of_max": 0.012265161962470631,
+        "parameters": [
+          0.9499590994064773,
+          0.008017604137901752,
+          0.00475529044627295,
+          0.0483386567695502,
+          0.020959827242924254,
+          -0.00047925652299609,
+          0.0025694801238949653
+        ],
+        "status": "empirical local fit; not phase identification",
+        "omega_only_correction_deg": -0.01734389728500929,
+        "two_theta_residual_deg": 0.003375449502065919
+      }
+    ],
+    "raw_alignment_fields": [
+      {
+        "type": 60,
+        "offset": 827,
+        "length": 76,
+        "name": "Theta",
+        "flag": 2,
+        "delta": 1.5
+      },
+      {
+        "type": 60,
+        "offset": 903,
+        "length": 76,
+        "name": "TwoTheta",
+        "flag": 2,
+        "delta": 1.0
+      },
+      {
+        "type": 60,
+        "offset": 979,
+        "length": 76,
+        "name": "Phi",
+        "flag": 2,
+        "delta": 2.0
+      },
+      {
+        "type": 60,
+        "offset": 1055,
+        "length": 76,
+        "name": "Detector",
+        "flag": 2,
+        "delta": 1.0
+      },
+      {
+        "type": 60,
+        "offset": 1131,
+        "length": 76,
+        "name": "Chi",
+        "flag": 2,
+        "delta": 0.75
+      },
+      {
+        "type": 60,
+        "offset": 1207,
+        "length": 76,
+        "name": "BeamTranslation",
+        "flag": 2,
+        "delta": 1.0
+      },
+      {
+        "type": 60,
+        "offset": 1283,
+        "length": 76,
+        "name": "X",
+        "flag": 2,
+        "delta": 10.0
+      },
+      {
+        "type": 60,
+        "offset": 1359,
+        "length": 76,
+        "name": "Y",
+        "flag": 2,
+        "delta": 10.0
+      },
+      {
+        "type": 60,
+        "offset": 1435,
+        "length": 76,
+        "name": "Z",
+        "flag": 2,
+        "delta": 1.0
+      }
+    ],
+    "fixed_phi_deg": 90.0,
+    "fixed_chi_deg": 0.42
+  }
+}

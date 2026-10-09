@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Explicit, provenance-preserving XRD reciprocal-space mapping"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.24", "scipy>=1.10", "matplotlib>=3.7"]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "matplotlib>=3.7", "pillow>=9.1"]
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
@@ -19,6 +19,9 @@ rsm-toolkit = "rsm_toolkit.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+rsm_toolkit = ["data/cif/*.cif", "data/icons/*.png"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -15,8 +15,6 @@ def calculate_rsm(measurement: Measurement, config: RSMConfiguration) -> RSM:
     geometry=config.geometry
     if geometry is None:
         raise MissingMetadataError("Select an explicit supported geometry; brand/filename is not a geometry definition.")
-    if not geometry.calibration_verified and not config.allow_provisional:
-        raise MissingMetadataError("Geometry calibration is unverified. Supply calibration or explicitly set allow_provisional=True.")
     wavelength=config.wavelength_angstrom
     if wavelength is None:
         wavelength=measurement.wavelength_angstrom
@@ -46,8 +44,6 @@ def calculate_rsm(measurement: Measurement, config: RSMConfiguration) -> RSM:
             raise RSMError("Measurement has fewer than two independent angular dimensions; it is not a 2D RSM. Use geometry.transform for a 1D scan.")
     q=np.broadcast_to(geometry.transform(motors,float(wavelength)),measurement.intensity.shape+(3,))
     notes=list(measurement.warnings)
-    if not geometry.calibration_verified:
-        notes.append("PROVISIONAL: nominal/user-defined coordinates, not a calibrated crystal/surface frame.")
     if isinstance(geometry,CoplanarGeometry) and any(k in measurement.motors for k in ("Chi","Phi")):
         notes.append("Fixed Chi/Phi retained in measurement metadata but not applied: their axis order/zeroes require calibration. Qx=0 is a coplanar projection, not a measured transverse component.")
     sample=None
@@ -123,7 +119,7 @@ def brightest_point(rsm:RSM) -> dict[str,Any]:
             "q_angstrom_inverse":rsm.q[index].tolist(),"intensity":float(rsm.intensity[index]),
             "intensity_unit":rsm.measurement.intensity_unit,
             "motor_positions":{k:float(v[index]) for k,v in rsm.measurement.motors.items()},
-            "frame":rsm.frame,"provisional":rsm.provisional}
+            "frame":rsm.frame}
 
 
 def angular_profile(measurement:Measurement,*,scan_motor:str,band_motor:str,center:float,half_width:float):

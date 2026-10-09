@@ -4,10 +4,10 @@
 
 | Source | Actual signature/schema | Acquisition | RSM suitability |
 |---|---|---|---|
-| `new_data/22-40_RSM_S0159.brml` | ZIP; DIFFRAC 8.6.2.0 BRML; external Eiger memory profile | UltraFastRSM / OmegaTwoThetaScan / Coplanar | 1401×477 angular bins, sufficient for provisional nominal coplanar reconstruction |
-| `new_data/22-40_RSM_S0159.raw` | RAW4.00; 1401 PSD Fix Scan ranges | Paired export of the above | Same coordinates and counts to export precision |
-| `new_data/2200_RSM_S0155.brml` | Same BRML schema | Same scan mode and angular ranges, different fixed Chi/Phi and intensities | Same provisional capability |
-| `new_data/2200_RSM_S0155.raw` | Same RAW4.00 scan variant | Paired export | Same provisional capability |
+| `example_data/22-40_RSM_S0159.brml` | ZIP; DIFFRAC 8.6.2.0 BRML; external Eiger memory profile | UltraFastRSM / OmegaTwoThetaScan / Coplanar | 1401×477 angular bins, sufficient for provisional nominal coplanar reconstruction |
+| `example_data/22-40_RSM_S0159.raw` | RAW4.00; 1401 PSD Fix Scan ranges | Paired export of the above | Same coordinates and counts to export precision |
+| `example_data/2200_RSM_S0155.brml` | Same BRML schema | Same scan mode and angular ranges, different fixed Chi/Phi and intensities | Same provisional capability |
+| `example_data/2200_RSM_S0155.raw` | Same RAW4.00 scan variant | Paired export | Same provisional capability |
 
 The names do not establish reflection indices or identify any legacy specimen group. In fact both files have the same omega/detector ranges despite different reflection-looking names. The sample context CdZnS-on-CdS comes from the user's instruction. No film composition, lattice metric or surface orientation is assumed.
 

@@ -6,10 +6,10 @@ Updated 2026-10-08. The package imports and reconstructs both supplied CdZnS-on-
 
 | File | Import | Conversion | Result |
 |---|---|---|---|
-| [22-40_RSM_S0159.brml](../new_data/22-40_RSM_S0159.brml) | Pass: DIFFRAC 8.6.2.0, external Eiger 1D count profile | Pass, nominal coplanar | 1401×477 bins; maximum recorded intensity 1272.08 |
-| [22-40_RSM_S0159.raw](../new_data/22-40_RSM_S0159.raw) | Pass: RAW4.00 PSD Fix Scan | Pass; agrees with paired BRML | 1401 ranges ×477 bins |
-| [2200_RSM_S0155.brml](../new_data/2200_RSM_S0155.brml) | Pass: same BRML codec profile | Pass, nominal coplanar | 1401×477 bins; maximum recorded intensity 1587.1501 |
-| [2200_RSM_S0155.raw](../new_data/2200_RSM_S0155.raw) | Pass: RAW4.00 PSD Fix Scan | Pass; agrees with paired BRML | 1401 ranges ×477 bins |
+| [22-40_RSM_S0159.brml](../example_data/22-40_RSM_S0159.brml) | Pass: DIFFRAC 8.6.2.0, external Eiger 1D count profile | Pass, nominal coplanar | 1401×477 bins; maximum recorded intensity 1272.08 |
+| [22-40_RSM_S0159.raw](../example_data/22-40_RSM_S0159.raw) | Pass: RAW4.00 PSD Fix Scan | Pass; agrees with paired BRML | 1401 ranges ×477 bins |
+| [2200_RSM_S0155.brml](../example_data/2200_RSM_S0155.brml) | Pass: same BRML codec profile | Pass, nominal coplanar | 1401×477 bins; maximum recorded intensity 1587.1501 |
+| [2200_RSM_S0155.raw](../example_data/2200_RSM_S0155.raw) | Pass: RAW4.00 PSD Fix Scan | Pass; agrees with paired BRML | 1401 ranges ×477 bins |
 
 No supplied new file failed. No S0154 input was used. No reflection index or sample group was inferred from the source names. The user's stated film/substrate identities are attached as context, not used in the angle conversion.
 

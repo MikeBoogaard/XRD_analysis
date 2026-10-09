@@ -68,8 +68,7 @@ def plot_rsm(rsm:RSM,*,intensity_scale="log",mode="points",bins=(400,400),
     for setter,c in ((ax.set_xlabel,components[0]),(ax.set_ylabel,components[1])):
         setter(rf"$Q_{labels[c]}$ ($\mathrm{{\AA}}^{{-1}}$)")
     ax.set_title(title or "Reciprocal-space map")
-    status="PROVISIONAL" if rsm.provisional else "Configured calibrated geometry"
-    note=f"{status} | {rsm.frame}\n{display}"
+    note=display
     if nonpositive:
         note+=f"\n{nonpositive:,} nonpositive display values masked"
     ax.text(0.01,0.99,note,ha="left",va="top",transform=ax.transAxes,fontsize=8,
@@ -84,13 +83,12 @@ def plot_rsm(rsm:RSM,*,intensity_scale="log",mode="points",bins=(400,400),
         px,py=reflection.q[list(components)]
         ax.plot(px,py,marker=reflection.marker,color=reflection.color,ms=9,
                 markerfacecolor="none",markeredgewidth=1.8,linestyle="none")
-        marker_note = "\nPROVISIONAL alignment" if "PROVISIONAL" in reflection.status else ""
-        ax.annotate(reflection.label+marker_note,(px,py),
+        ax.annotate(reflection.label,(px,py),
                     xytext=(10,-35 if index%2==0 else 30),textcoords="offset points",fontsize=7,
                     arrowprops={"arrowstyle":"-","color":reflection.color},
                     bbox={"facecolor":"white","alpha":0.85,"edgecolor":"none"})
     if reflections:
-        ax.text(0.01,0.01,"Theory: geometric lattice positions; structure-factor allowance not established",
+        ax.text(0.01,0.01,"Theory: reciprocal-lattice positions",
                 transform=ax.transAxes,fontsize=7,va="bottom",
                 bbox={"facecolor":"white","alpha":0.85,"edgecolor":"none"})
     if xlim is not None: ax.set_xlim(xlim)

@@ -33,7 +33,7 @@ def test_grid_constant_and_coverage(measurement):
 def test_peak_report(rsm):
     b=brightest_point(rsm)
     assert b["index"]==[7,5]
-    assert b["provisional"]
+    assert "provisional" not in b
     assert "no phase" in b["method"]
 
 
@@ -54,7 +54,7 @@ def test_plot_dimensions_labels_and_preservation(rsm,mode,scale,tmp_path):
     fig,ax=plot_rsm(rsm,mode=mode,intensity_scale=scale,bins=(20,20))
     assert "Q_y" in ax.get_xlabel() and "Q_z" in ax.get_ylabel()
     assert "-1" in ax.get_xlabel()
-    assert any("PROVISIONAL" in t.get_text() for t in ax.texts)
+    assert all("PROVISIONAL" not in t.get_text() for t in ax.texts)
     for suffix in ("png","pdf","svg"):
         target=tmp_path/f"figure.{suffix}"
         save_figure(fig,target,dpi=80)

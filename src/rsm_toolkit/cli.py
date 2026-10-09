@@ -8,6 +8,7 @@ import sys
 def main(argv=None):
     parser=argparse.ArgumentParser(prog="rsm-toolkit")
     subs=parser.add_subparsers(dest="command",required=True)
+    subs.add_parser("gui",help="Open the desktop map builder")
     inspect=subs.add_parser("inspect",help="Report measurement dimensions, axes, units and warnings")
     inspect.add_argument("files",nargs="+")
     map_parser=subs.add_parser("map",help="Calculate a map using explicit geometry configuration")
@@ -17,6 +18,10 @@ def main(argv=None):
     map_parser.add_argument("--mode",choices=("points","grid"),default=None)
     map_parser.add_argument("--scale",choices=("linear","log"),default=None)
     args=parser.parse_args(argv)
+    if args.command=="gui":
+        from .gui import main as gui_main
+        gui_main()
+        return 0
     import matplotlib
     matplotlib.use("Agg")
     from . import load_xrd,load_configuration,calculate_rsm,plot_rsm,save_figure,export_data,brightest_point

@@ -1,0 +1,31 @@
+{
+  "schema": "rsm-gui-2",
+  "fields": {
+    "file": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\new_data\\rsm(12-30)along10-10.raw",
+    "output": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\outputs",
+    "name": "CdZnS_12-30",
+    "title": "Cd0.65Zn0.35S / CdS - relaxed alloy model",
+    "overlays": true,
+    "substrate": "CdS",
+    "film": "CdZnS Vegard",
+    "zinc": "50",
+    "substrate_name": "Substrate",
+    "substrate_cell": "",
+    "film_name": "Film",
+    "film_cell": "",
+    "norm": "11-20",
+    "reflection": "12-30",
+    "inplane": "1-100",
+    "aligned": true,
+    "film_norm": "",
+    "film_reflection": "",
+    "film_inplane": "",
+    "sense": "Opposite InPlane (+y)",
+    "omega_offset": "0",
+    "detector_offset": "0",
+    "wavelength": "",
+    "scale": "log",
+    "mode": "points",
+    "decades": "4"
+  }
+}

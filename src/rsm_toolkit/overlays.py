@@ -85,8 +85,7 @@ def sample_from_config(value):
 def configured_reflections(config, rsm):
     """Resolve reflections only with an explicit sample-to-map rotation and evidence.
 
-    Unverified alignment requires an explicit opt-in and is labeled on every
-    marker. A frame name alone never establishes alignment. Returns reflections
+    A frame name alone never establishes alignment. Returns reflections
     and a JSON-safe report of full vectors (including the omitted coordinate).
     """
     settings = config.plot_settings
@@ -108,9 +107,6 @@ def configured_reflections(config, rsm):
             raise RSMError(f"frame_alignment.{key} must be boolean.")
     if not isinstance(a.get('reference'), str) or not a['reference'].strip():
         raise MissingMetadataError("Frame alignment needs a reference describing mounting evidence or explicit assumptions.")
-    provisional = rsm.provisional or not a.get('verified', False)
-    if provisional and not a.get('allow_provisional', False):
-        raise MissingMetadataError("Overlay alignment/geometry is unverified; explicitly allow_provisional or supply calibration.")
     rotation = validate_rotation(a['sample_to_map'])
     components = settings.get('components', (1, 2))
     if len(components) != 2 or len(set(components)) != 2 or any(c not in (0, 1, 2) for c in components):
@@ -135,7 +131,7 @@ def configured_reflections(config, rsm):
                 raise RSMError(f"{role} {h}: reflection is inaccessible at the configured wavelength.")
             if abs(q[omitted]) > tolerance:
                 raise RSMError(f"{role} {h}: off-plane Q{omitted}={q[omitted]:.6g}; no projection onto measured plane.")
-            status = ('PROVISIONAL alignment; ' if provisional else '') + predicted.status
+            status = predicted.status
             reflection = replace(predicted, q=q, label=f"{role}: {predicted.label}", status=status,
                                  marker='o' if role == 'substrate' else 'D',
                                  color='cyan' if role == 'substrate' else 'magenta')

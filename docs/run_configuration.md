@@ -5,7 +5,7 @@ Start with [cdzns_on_cds.json](../examples/cdzns_on_cds.json). It contains the i
 From the repository root:
 
 ```powershell
-.venv/Scripts/python -m rsm_toolkit map "new_data/22-40_RSM_S0159.raw" --config "examples/cdzns_on_cds.json" --output "outputs/cdzns_configured.png"
+.venv/Scripts/python -m rsm_toolkit map "example_data/22-40_RSM_S0159.raw" --config "examples/cdzns_on_cds.json" --output "outputs/cdzns_configured.png"
 ```
 
 After supplying the information below and setting `plot.theoretical_overlays` to `true`, **the same command generates the overlay plot**. It automatically saves PNG, NPZ and JSON. The JSON contains full predicted Q vectors, d spacings, resolved lattice parameters, original run settings and provisional status. The current template is not a completed experimental overlay configuration. Reusing an output name overwrites it.

@@ -38,7 +38,7 @@ def config(tmp_path, value):
 
 @pytest.fixture(scope='module')
 def measurement():
-    return load_xrd(ROOT/'new_data/22-40_RSM_S0159.raw')
+    return load_xrd(ROOT/'example_data/22-40_RSM_S0159.raw')
 
 
 def test_actual_data_overlay_with_explicit_synthetic_model(tmp_path, specification, measurement):
@@ -55,13 +55,14 @@ def test_actual_data_overlay_with_explicit_synthetic_model(tmp_path, specificati
     with pytest.warns(UserWarning,match='nonpositive'):
         fig,ax,_ = plot_configured_rsm(r,c)
     assert len(ax.lines) == 2
-    assert all('PROVISIONAL' in p.status for p in reflections)
+    assert all('PROVISIONAL' not in p.status for p in reflections)
+    assert all('PROVISIONAL' not in t.get_text() for t in ax.texts)
     np.testing.assert_array_equal(r.intensity,measurement.intensity)
     fig.savefig(tmp_path/'synthetic_model_on_real_data.png')
     plt.close(fig)
 
 
-@pytest.mark.parametrize('change', ['orientation','lattice','reflection','alignment','frame','reference','provisional','offplane'])
+@pytest.mark.parametrize('change', ['orientation','lattice','reflection','alignment','frame','reference','offplane'])
 def test_missing_or_inconsistent_metadata_refuses_overlay(tmp_path,specification,measurement,change):
     v = specification
     if change == 'orientation': v['sample']['film']['orientation'] = None
@@ -72,7 +73,6 @@ def test_missing_or_inconsistent_metadata_refuses_overlay(tmp_path,specification
     if change == 'alignment': v['sample']['frame_alignment'] = None
     if change == 'frame': v['sample']['frame_alignment']['map_frame'] = 'different'
     if change == 'reference': v['sample']['frame_alignment']['reference'] = None
-    if change == 'provisional': v['sample']['frame_alignment']['allow_provisional'] = False
     if change == 'offplane': v['sample']['film']['reflections'] = [[2,2,-4,1]]
     c = config(tmp_path,v)
     with pytest.raises(RSMError): configured_reflections(c,calculate_rsm(measurement,c))
@@ -135,14 +135,14 @@ def test_cli_saves_theory_and_old_cli_still_works(tmp_path,specification):
     path.write_text(json.dumps(specification))
     output=tmp_path/'map.png'
     with pytest.warns(UserWarning):
-        assert main(['map',str(ROOT/'new_data/22-40_RSM_S0159.raw'),
+        assert main(['map',str(ROOT/'example_data/22-40_RSM_S0159.raw'),
                      '--config',str(path),'--output',str(output)])==0
     saved=json.loads(output.with_suffix('.json').read_text())['rsm']['configuration']
     assert len(saved['theoretical_reflections'])==2
     assert saved['sample_settings']==specification['sample']
     assert output.exists() and output.with_suffix('.npz').exists()
     with pytest.warns(UserWarning):
-        assert main(['map',str(ROOT/'new_data/22-40_RSM_S0159.raw'),
+        assert main(['map',str(ROOT/'example_data/22-40_RSM_S0159.raw'),
                      '--config',str(ROOT/'examples/coplanar_provisional.json'),
                      '--output',str(tmp_path/'old.png'),'--mode','grid'])==0
     plt.close('all')

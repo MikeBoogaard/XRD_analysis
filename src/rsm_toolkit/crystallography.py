@@ -165,7 +165,7 @@ class Reflection:
     label: str
     q: np.ndarray
     frame: str
-    status: str = "geometric vector; structure-factor allowance unknown"
+    status: str = "reciprocal-lattice position"
     marker: str = "x"
     color: str = "red"
 

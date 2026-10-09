@@ -1,0 +1,135 @@
+{
+  "geometry": {
+    "type": "coplanar",
+    "omega_motor": "Theta",
+    "detector_motor": "TwoTheta",
+    "omega_sign": 1,
+    "detector_sign": 1,
+    "omega_offset_deg": 0.0,
+    "detector_offset_deg": 0.0,
+    "calibration_verified": false,
+    "calibration_reference": null,
+    "frame": "sample coplanar"
+  },
+  "wavelength_angstrom": null,
+  "plot": {
+    "title": "Cd0.65Zn0.35S / CdS - relaxed alloy model",
+    "theoretical_overlays": true,
+    "mode": "points",
+    "intensity_scale": "log",
+    "dynamic_range_decades": 4.0
+  },
+  "notes": "Coplanar reconstruction. InPlane is a direct crystal direction. No automatic offset or peak alignment. Input fields are saved in settings.json.",
+  "sample": {
+    "identifier": "CdZnS_12-30",
+    "substrate": {
+      "name": "CdS",
+      "lattice": {
+        "a": 4.136,
+        "b": 4.136,
+        "c": 6.716,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 120.0
+      },
+      "crystal_structure": "P6_3mc",
+      "reference": "Bundled CIF: CdS.cif; cell lengths and angles",
+      "orientation": {
+        "crystal_to_sample": [
+          [
+            6.123233995736767e-17,
+            1.0605752387249068e-16,
+            1.0
+          ],
+          [
+            0.8660254037844386,
+            -0.5000000000000001,
+            0.0
+          ],
+          [
+            0.5000000000000001,
+            0.8660254037844387,
+            -1.2246467991473532e-16
+          ]
+        ]
+      },
+      "reflections": [
+        [
+          1,
+          2,
+          -3,
+          0
+        ]
+      ]
+    },
+    "film": {
+      "name": "CdZnS",
+      "crystal_structure": "wurtzite alloy model",
+      "composition": {
+        "Zn_cation_fraction": 0.5
+      },
+      "vegard": {
+        "first": {
+          "system": "hexagonal",
+          "a": 4.136,
+          "c": 6.716
+        },
+        "second": {
+          "system": "hexagonal",
+          "a": 3.80579647,
+          "c": 6.23798163
+        },
+        "fraction_second": 0.5
+      },
+      "reference": "Relaxed linear Vegard model using repository CdS/ZnS cells; strain not modeled",
+      "orientation": {
+        "crystal_to_sample": [
+          [
+            6.123233995736767e-17,
+            1.0605752387249068e-16,
+            1.0
+          ],
+          [
+            0.8660254037844386,
+            -0.5000000000000001,
+            0.0
+          ],
+          [
+            0.5000000000000001,
+            0.8660254037844387,
+            -1.2246467991473532e-16
+          ]
+        ]
+      },
+      "reflections": [
+        [
+          1,
+          2,
+          -3,
+          0
+        ]
+      ]
+    },
+    "frame_alignment": {
+      "map_frame": "sample coplanar",
+      "sample_to_map": [
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "reference": "User-selected coplanar sample frame; Opposite InPlane (+y)"
+    }
+  }
+}
