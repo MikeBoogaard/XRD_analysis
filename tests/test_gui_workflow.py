@@ -143,9 +143,29 @@ def test_tk_plot_button_to_preview(tmp_path,monkeypatch):
         assert app.result_folder is not None
         assert app.image_source is not None
         assert (app.result_folder/'map.png').exists()
+        assert 'not saved' in app.status.get()
+        assert not list(tmp_path.iterdir())
+        app.variables['title'].set('Edited after plotting')
+        app.save_results()
+        assert (app.saved_folder/'map.png').read_bytes()==(app.result_folder/'map.png').read_bytes()
+        assert load_settings(app.saved_folder/'settings.json')['title']!='Edited after plotting'
         assert 'Saved:' in app.status.get()
     finally:
         if app is not None and app.process is not None:
             app.process.terminate();app.process.wait(timeout=10)
             app.temp.cleanup()
+        if app is not None and app.preview_temp:app.preview_temp.cleanup()
         root.destroy()
+
+def test_preview_does_not_save_until_requested(tmp_path):
+    from rsm_toolkit.gui_workflow import save_preview
+    form=defaults()
+    form.update(file=str(ROOT/'example_data/rsm(12-30)along10-10.raw'),output=str(tmp_path/'saved'))
+    preview=execute(form,output_parent=tmp_path/'temporary')
+    assert not (tmp_path/'saved').exists()
+    first=save_preview(preview,form['output'])
+    second=save_preview(preview,form['output'])
+    assert first!=second
+    for name in ('map.png','map.npz','map.json','settings.json','run.json'):
+        assert (first/name).read_bytes()==(preview/name).read_bytes()
+    assert load_settings(first/'settings.json')==form

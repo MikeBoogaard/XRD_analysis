@@ -8,9 +8,9 @@ Double-click **[Start RSM GUI.cmd](<Start RSM GUI.cmd>)** in this folder. If you
 
 1. Choose a measurement with **Browse…** on the **File** tab.
 2. Enter your sample information, or select a **Preset**.
-3. Press **Plot and save**.
+3. Press **Plot**.
 
-Your map appears on the right. **Open saved output folder** takes you to the picture and numerical data.
+Your map appears on the right. Click **Save results** to keep it. **Open saved output folder** takes you to the picture and numerical data.
 
 ## Tutorial: create a map
 
@@ -56,9 +56,11 @@ For general 3D rotation sequences, use the JSON configuration and command-line i
 
 ### 4. Plot and save
 
-Press **Plot and save**. The window stays responsive while the map is calculated. Cyan circles mark substrate reflections; magenta diamonds mark film reflections.
+Press **Plot**. The window stays responsive while the map is calculated. Cyan circles mark substrate reflections; magenta diamonds mark film reflections.
 
-Every run creates a new dated output folder, so previous results are not overwritten:
+Adjust settings and press **Plot** as often as needed. Previews use temporary files and do not create runs in your output folder. Click **Save results** when satisfied: it saves the completed preview (including any FWHM results) into the current **Save in folder** location. Edits made after plotting do not change that preview; plot again to apply them. Unsaved previews are discarded when replaced or when the application closes.
+
+Each **Save results** creates a new dated output folder, so previous results are not overwritten:
 
 | File | Contents |
 |---|---|
@@ -69,7 +71,7 @@ Every run creates a new dated output folder, so previous results are not overwri
 | `run.json` | Equivalent command-line configuration. |
 | `warnings.txt` | Processing messages, including zeros masked by log display. |
 
-Use **Load settings** to open a saved `settings.json`, choose the next measurement and update its fields. **Save settings** also saves an unfinished form. A failed calculation reports its error; if a run folder was already created, it contains `FAILED.txt`.
+Use **Load settings** to open a saved `settings.json`, choose the next measurement and update its fields. **Save settings** also saves an unfinished form. A failed preview reports its error and retains the previous successful preview.
 
 ## Presets
 
@@ -150,3 +152,32 @@ Python 3.10+; dependencies are NumPy, SciPy, Matplotlib and Pillow. Tkinter supp
 - [example_data](example_data): all bundled example measurements, including the CdZnS scans, S0154, S0183 and supplementary XRD data. GUI presets select files here.
 - [CIF reference files](<Literature data for analysis/CIF>): crystallographic data.
 - [outputs](outputs): figures and numerical results.
+
+## Film peak FWHM in the GUI
+
+1. Select your measurement and usual map settings.
+2. Open **4. Film FWHM** and enable **Fit film-region rocking-curve FWHM**.
+3. Either click **Fill from theoretical film reflection**, or enter the film peak **2theta center**, the **band half width** (0.2 means center ?0.2 degrees), and the minimum/maximum **omega** for the fit. Use the measured film region from your scan; exclude the substrate peak and include both sides of the film peak. All angles are in degrees **after** applying the offsets on the Advanced tab.
+4. Click **Plot**. The map shows a cyan outline of the selected band and omega range. Use the preview dropdown to switch from **Map** to **Film FWHM**.
+
+The application averages recorded intensity over the selected 2theta band at each omega, then fits one pseudo-Voigt peak plus a constant background. The FWHM line marks half the fitted peak height above background. The lower panel shows residuals; inspect these and try nearby band widths/ranges to assess fit sensitivity. This is an empirical rocking-curve width in degrees, not a direct measurement of crystallite size, strain or mosaicity. It does not separate overlapping film/substrate peaks or remove instrumental broadening.
+
+Click **Save results** to keep **fwhm.png**, **fwhm.csv** (profile, fit, residual and sample count), and **fwhm.json** (selection, source, geometry, parameters and approximate covariance) alongside the map. The settings file retains the selection. No log transform or automatic spike removal is applied to fit data. If fitting fails, the map preview remains available to save, a message explains the problem, and **FWHM_FAILED.txt** records it. Older settings files load with FWHM disabled.
+
+### Fill FWHM angles from theory
+
+Fill in the film material (including Zn percentage for CdZnS), Norm, InPlane, reflection and axis sense first. On **Film FWHM**, choose a **Suggested omega half width** and click **Fill from theoretical film reflection**. The button fills 2theta and the minimum/maximum omega. The default suggested range is theoretical omega ?2 degrees; it is a starting window, not a predicted peak width. The 2theta band half-width is retained.
+
+Wavelength comes from Advanced if entered, otherwise from the selected measurement. The calculation uses the same film orientation and lattice model as the theoretical markers, even when markers are switched off. These are corrected physical angles, so extra instrument offsets are not added a second time. Off-plane or inaccessible reflections are rejected.
+
+All fields remain manually editable. Reclick the button after changing materials, composition, reflection or orientation. Review the measured selection: the suggestion is not clipped to scan coverage, does not automatically exclude substrate intensity, and a strained or misaligned film can differ from its theoretical position.
+
+### Find the measured film maximum near theory
+
+As a third option alongside manual entry and theoretical fill, click **Find measured peak near theory** on **Film FWHM**. Select the measurement and fill in materials, composition and orientations first.
+
+- **Search 2theta half width** (default 0.5 degrees) and **Search omega half width** (default 1 degree) define a rectangular angular region around the theoretical film position.
+- The button finds the brightest finite positive recorded bin in that region, fills its 2theta center, and places the omega fit range around its measured omega using **Suggested omega half width**. The extraction band half-width stays unchanged.
+- A message reports measured angles and shifts from theory, and flags a maximum near the search boundary. All angles include Advanced offsets, consistent with FWHM selection. No smoothing, log transform or intensity normalization is used for the search.
+
+Keep the substrate outside the search box. This is a measured-bin maximum, not a fitted peak center or automatic film identification; a hot pixel or overlapping substrate can be selected. Review the resulting map selection, adjust search widths or edit the values manually. The search never falls back to a global maximum when the region is empty. Search widths and the resulting FWHM fields are saved with GUI settings. Re-run the search after changing the data, material, orientation or offsets.

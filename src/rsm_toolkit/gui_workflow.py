@@ -19,7 +19,93 @@ def defaults():
                 norm='', reflection='', inplane='',
                 aligned=True, film_norm='', film_reflection='', film_inplane='',
                 sense='Choose axis sense', omega_offset='0', detector_offset='0',
+                fwhm_search_tt='0.5', fwhm_search_omega='1', fwhm_window='2', fwhm=False, fwhm_center='', fwhm_half_width='0.2', fwhm_min='', fwhm_max='',
                 wavelength='', scale='log', mode='points', decades='4')
+
+
+def fwhm_selection(form):
+    if not form.get('fwhm',False):return None
+    values=[number(form[k],label) for k,label in (
+        ('fwhm_center','Film 2theta center'),('fwhm_half_width','2theta half width'),
+        ('fwhm_min','Minimum omega'),('fwhm_max','Maximum omega'))]
+    center,half,low,high=values
+    if half<=0 or low>=high or center-half<0 or center+half>180:
+        raise RSMError('FWHM: use a positive band half width, increasing omega range and 2theta band within 0?180 degrees.')
+    return values
+
+
+def theoretical_fwhm_fields(form):
+    """Suggest corrected physical angles; window is user-selected, not predicted width."""
+    from .overlays import phase_from_config
+    from .crystallography import reflection_position
+    from . import load_xrd
+    f={**defaults(),**form}
+    config=build_configuration({**f,'overlays':True})
+    raw=config['sample']['film']
+    if raw is None:raise RSMError('Choose a film material before filling FWHM from theory.')
+    material_model,film_orientation=phase_from_config(raw)
+    q=reflection_position(material_model,raw['reflections'][0],film_orientation,
+                          frame=config['geometry']['frame']).q
+    q=np.asarray(config['sample']['frame_alignment']['sample_to_map'])@q
+    if abs(q[0])>1e-8:
+        raise RSMError('Film reflection is off the coplanar scattering plane; check its orientation and InPlane.')
+    wavelength=config['wavelength_angstrom']
+    if wavelength is None:
+        if not Path(f['file']).is_file():
+            raise RSMError('Select a measurement for its wavelength, or enter wavelength on Advanced.')
+        wavelength=load_xrd(f['file']).wavelength_angstrom
+    if wavelength is None:raise RSMError('No wavelength in measurement; enter it on Advanced.')
+    ratio=np.linalg.norm(q)*wavelength/(4*np.pi)
+    if not 0<ratio<=1:raise RSMError('Film reflection is inaccessible at this wavelength.')
+    theta=np.degrees(np.arcsin(ratio))
+    # Qy = |Q| sin(omega-theta), Qz = |Q| cos(omega-theta).
+    omega=theta+np.degrees(np.arctan2(q[1],q[2]))
+    if not 0<omega<2*theta:
+        raise RSMError('Film reflection is outside the reflection-geometry branch; check orientation and axis sense.')
+    window=number(f['fwhm_window'],'Suggested omega half width')
+    if window<=0:raise RSMError('Suggested omega half width must be positive.')
+    return {'fwhm_center':format(2*theta,'.10g'),
+            'fwhm_min':format(omega-window,'.10g'),'fwhm_max':format(omega+window,'.10g')}
+
+
+def measured_fwhm_fields(form):
+    """Brightest finite positive raw bin in an explicit angular box near theory."""
+    from . import load_xrd
+    f={**defaults(),**form}
+    if not Path(f['file']).is_file():raise RSMError('Select a measurement before searching for a measured peak.')
+    tt_radius=number(f['fwhm_search_tt'],'2theta search half width')
+    om_radius=number(f['fwhm_search_omega'],'Omega search half width')
+    if min(tt_radius,om_radius)<=0:raise RSMError('Search half widths must be positive.')
+    m=load_xrd(f['file'])
+    # Use the file wavelength if no explicit wavelength was entered; avoid a second read.
+    if not f['wavelength'].strip() and m.wavelength_angstrom is not None:
+        f['wavelength']=str(m.wavelength_angstrom)
+    theory=theoretical_fwhm_fields(f)
+    tt0=float(theory['fwhm_center'])
+    om0=(float(theory['fwhm_min'])+float(theory['fwhm_max']))/2
+    angles=[]
+    for motor,offset in (('Theta','omega_offset'),('TwoTheta','detector_offset')):
+        if motor not in m.motors:raise RSMError(f'Missing search motor {motor}.')
+        unit=m.motor_units[motor]
+        if unit not in ('degree','radian'):raise RSMError('Peak search requires angular motor units.')
+        a=np.rad2deg(m.motors[motor]) if unit=='radian' else m.motors[motor]
+        angles.append(a+number(f[offset],offset))
+    om,tt=angles
+    keep=(np.abs(om-om0)<=om_radius)&(np.abs(tt-tt0)<=tt_radius)
+    keep &= np.isfinite(om)&np.isfinite(tt)&np.isfinite(m.intensity)&(m.intensity>0)
+    if not keep.any():raise RSMError('No positive finite measured samples in the search region. Review theory, offsets or search widths.')
+    index=np.unravel_index(np.argmax(np.where(keep,m.intensity,-np.inf)),m.intensity.shape)
+    measured_om,measured_tt=float(om[index]),float(tt[index])
+    window=number(f['fwhm_window'],'Suggested omega half width')
+    fields={'fwhm_center':format(measured_tt,'.10g'),
+            'fwhm_min':format(measured_om-window,'.10g'),'fwhm_max':format(measured_om+window,'.10g')}
+    report=(f'Measured maximum: 2theta {measured_tt:.5f}, omega {measured_om:.5f} degrees. '
+            f'Shift from theory: {measured_tt-tt0:+.5f}, {measured_om-om0:+.5f} degrees. '
+            'Brightest recorded bin, not a fitted center or confirmed film identification. '
+            'Check for substrate peaks or hot pixels; narrow the search if needed.')
+    if abs(measured_om-om0)>.9*om_radius or abs(measured_tt-tt0)>.9*tt_radius:
+        report+=' Maximum is near a search boundary; review the search limits.'
+    return fields,report
 
 
 def indices(text, *, direction=False):
@@ -161,7 +247,7 @@ def load_settings(path):
         if unknown:
             raise RSMError(f'Unknown GUI fields: {sorted(unknown)}')
         for key,v in value['fields'].items():
-            expected=bool if key in ('overlays','aligned') else str
+            expected=bool if key in ('overlays','aligned','fwhm') else str
             if type(v) is not expected:
                 raise RSMError(f'Invalid type for saved setting {key}.')
         return {**defaults(),**value['fields']}
@@ -169,7 +255,7 @@ def load_settings(path):
         raise RSMError(f'Invalid settings file: {exc}') from exc
 
 
-def execute(form):
+def execute(form, *, output_parent=None):
     """Worker pipeline. Creates a unique run folder and records failures there."""
     from . import load_xrd, load_configuration, calculate_rsm, plot_configured_rsm, save_figure, export_data
     import matplotlib.pyplot as plt
@@ -177,9 +263,10 @@ def execute(form):
     if not source.is_file():
         raise RSMError('Select an existing measurement file.')
     config=build_configuration(form)
+    selection=fwhm_selection(form)
     m=load_xrd(source)
     safe=re.sub(r'[^\w.-]+','_',form['name']).strip(' ._') or 'map'
-    parent=Path(form['output']).expanduser()
+    parent=Path(form['output'] if output_parent is None else output_parent).expanduser()
     parent.mkdir(parents=True,exist_ok=True)
     folder=parent/(safe+'_'+datetime.now().strftime('%Y%m%d_%H%M%S_%f'))
     folder.mkdir()  # Exclusive creation; previous plots are never overwritten.
@@ -189,8 +276,14 @@ def execute(form):
         (folder/'run.json').write_text(json.dumps(config,indent=2)+'\n',encoding='utf-8')
         c=load_configuration(folder/'run.json')
         r=calculate_rsm(m,c)
-        fig,_,theory=plot_configured_rsm(r,c)
+        fig,axes,theory=plot_configured_rsm(r,c)
         r=replace(r,configuration={**r.configuration,'theoretical_reflections':theory})
+        if selection is not None:
+            from .film_fwhm import analyze
+            try:
+                analyze(r,c.geometry,selection,folder,axes)
+            except RSMError as exc:
+                (folder/'FWHM_FAILED.txt').write_text(str(exc),encoding='utf-8')
         save_figure(fig,folder/'map.png')
         export_data(r,folder/'map.npz')
         return folder
@@ -200,3 +293,17 @@ def execute(form):
     finally:
         if fig is not None:
             plt.close(fig)
+
+
+def save_preview(source, output):
+    """Copy the completed preview, without recalculating or changing its settings."""
+    import shutil
+    source=Path(source)
+    if not (source/'map.png').is_file():raise RSMError('Plot a map before saving results.')
+    parent=Path(output).expanduser()
+    parent.mkdir(parents=True,exist_ok=True)
+    name=load_settings(source/'settings.json')['name']
+    safe=re.sub(r'[^\w.-]+','_',name).strip(' ._') or 'map'
+    target=parent/(safe+'_'+datetime.now().strftime('%Y%m%d_%H%M%S_%f'))
+    shutil.copytree(source,target)  # Exclusive destination; never overwrites a previous run.
+    return target

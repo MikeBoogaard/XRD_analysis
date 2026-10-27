@@ -1,5 +1,38 @@
 # RSM toolkit progress
 
+
+## 2026-10-27: separate preview and saving
+
+- GUI **Plot** calculates into a temporary directory, replacing the previous temporary preview only after success. **Save results** copies the completed preview and its original settings into a fresh dated folder at the currently selected output destination. It does not recompute using subsequently edited form values. Map/FWHM previews remain switchable; open-folder targets saved output only. Temporary previews are cleaned on replacement and normal close.
+- Existing direct workflow/CLI saving is unchanged. Added optional worker output override plus copy-only save helper. Updated beginner tutorial.
+- Validation: 35 FWHM/GUI tests passed with 1 Tk end-to-end test skipped (no display), plus the new real-RAW preview/save test passed separately. Confirms no output directory before save, byte-identical saved results and separate destinations on repeated saves. The updated GUI test checks preview-to-save behavior when a display is available.
+
+
+## 2026-10-27: measured maximum near theoretical film
+
+- Added third FWHM selection method: **Find measured peak near theory**. Adjustable rectangular search half-widths in corrected 2theta/omega (defaults 0.5/1 degrees), separate from extraction band and fit half-window.
+- Reuses theoretical film orientation/lattice calculation; searches finite positive raw intensity bins only inside the region. Fills measured 2theta and omega-centered fit window; leaves manual fields editable and extraction half-width unchanged. Reports shifts and proximity to search boundary. No data/geometry alteration or global fallback.
+- Validation: **36 relevant tests passed** (FWHM and GUI). Synthetic tests recover a shifted local maximum while excluding a stronger outside peak, handle NaNs/empty regions, and verify corrected degree/radian coordinates. Actual RAW search and existing GUI plotting tests pass.
+- Search parameters and selected fields persist through existing settings. No automatic phase assignment, smoothing or hot-pixel rejection; user must exclude substrate. Manual and theory options remain available. README updated.
+
+
+## 2026-10-27: theoretical FWHM field fill
+
+- Added **Fill from theoretical film reflection** button to Film FWHM. Manual fields remain editable; no automatic overwriting on sample changes. Suggested omega half-width defaults to 2 degrees, distinct from predicted peak width; the existing 2theta band half-width is retained.
+- Reuses configured film lattice/alloy and orientation/frame mapping. Bragg angle is asin(lambda |Q| / 4pi); corrected omega = theta + atan2(Qy,Qz). No second application of instrument offsets. Wavelength is explicit or read from the selected measurement. Rejects missing film/metadata, off-plane vectors and inaccessible reflection-geometry solutions.
+- Validation: **33 relevant tests passed** (FWHM and GUI suites), including numerical angle-to-Q round trips for symmetric/asymmetric presets, independent Bragg d-spacing checks, Zn dependence, offset invariance, file wavelength and invalid-input handling. Existing actual-data fitting and GUI plotting tests passed.
+- Suggestions are not clipped to measured coverage or substrate-masked; user reviews region and refills after configuration changes. README documents use and limits.
+
+
+## 2026-10-26: optional film-region FWHM
+
+- Added GUI tab **4. Film FWHM** with explicit corrected-degree 2theta band and omega range. Disabled by default; existing settings and map workflows remain compatible. Preview switches between map and fitted profile.
+- Added [film_fwhm.py](src/rsm_toolkit/film_fwhm.py), reusing the existing angular-profile reduction. Pseudo-Voigt common FWHM plus constant background, unweighted least squares; no log fitting or automatic spike deletion. Original behavior was checked against Phase 1 pipeline/equation/error documents and archived line_scan.py. Historical analysis is unchanged.
+- Saves annotated map, fwhm.png, profile/fit/residual CSV and JSON with parameters, covariance, source, geometry and selection. Rejects insufficient/constant/failed fits and half-height points outside the selected interval. Fit failures are recorded separately and do not discard the map.
+- Synthetic validation covers Gaussian/Lorentzian/mixed limits, half-height definition, baseline recovery, angular offsets, preservation and malformed/truncated profiles. Actual RAW workflow checks successful output and an empty-band failure. A real-data demonstration is in [outputs/fwhm_validation](outputs/fwhm_validation); the 45 ?0.2 degree band with omega 19?24 gives approximately 1.7563 degrees. This is a workflow demonstration, not a validated phase assignment or material property.
+- Validation: **124 tests passed in 94.40 s**, including GUI execution. Two expected log-display warnings concern nonpositive measured bins; fitting uses unchanged intensities. The real-data fit figure was visually inspected.
+- User must select an isolated film band and inspect residuals/range sensitivity. No substrate separation, instrument deconvolution, physical broadening interpretation or validated confidence interval is supplied. README includes usage instructions.
+
 Updated 2026-10-09. Resume the working package; do not restart the Phase 1 analysis.
 
 ## Application icon and example data consolidation

@@ -19,6 +19,8 @@ class Application:
         self.process=None
         self.temp=None
         self.result_folder=None
+        self.saved_folder=None
+        self.preview_temp=None
         self.image_source=None
         root.title('RSM Toolkit')
         from PIL import Image, ImageTk
@@ -47,12 +49,12 @@ class Application:
         tabs.pack(fill='both',expand=True)
         self.tabs=tabs
         self.pages=[]
-        for name in ('1. File','2. Sample','3. Advanced'):
+        for name in ('1. File','2. Sample','3. Advanced','4. Film FWHM'):
             page=ttk.Frame(tabs,padding=10)
             tabs.add(page,text=name)
             page.columnconfigure(1,weight=1)
             self.pages.append(page)
-        file,sample,advanced=self.pages
+        file,sample,advanced,fwhm=self.pages
         self.entry(file,0,'Measurement','file',self.browse)
         self.entry(file,1,'Save in folder','output',self.output)
         self.entry(file,2,'Map name','name')
@@ -61,7 +63,7 @@ class Application:
         self.combo(file,5,'Intensity scale','scale',['log','linear'])
         self.entry(file,6,'Color range (decades)','decades')
         self.note(file,7,'Points shows measured bins. Grid shows bin means; no interpolation.\n'
-                  'Each run saves a new folder containing the plot, data and reusable settings.')
+                  'Plot previews the map. Save results keeps the plot, data and settings.')
         self.check(file,8,'Show theoretical substrate / film markers','overlays')
         ttk.Label(file,text='Presets',font=('Segoe UI',10,'bold')).grid(row=9,column=0,columnspan=3,sticky='w',pady=(20,5))
         ttk.Button(file,text='Symmetric (11-20), 35% Zn',command=lambda:self.example(False)).grid(row=10,column=0,columnspan=3,sticky='ew',pady=4)
@@ -101,6 +103,29 @@ class Application:
                   'With markers, axis sense must be selected explicitly. Opposite rotates\n'
                   'the crystal frame 180° about its normal.')
 
+        self.check(fwhm,0,'Fit film-region rocking-curve FWHM','fwhm')
+        self.entry(fwhm,1,'Film 2theta center (degrees)','fwhm_center')
+        self.entry(fwhm,2,'2theta band half width (degrees)','fwhm_half_width')
+        self.entry(fwhm,3,'Minimum omega (degrees)','fwhm_min')
+        self.entry(fwhm,4,'Maximum omega (degrees)','fwhm_max')
+        self.entry(fwhm,5,'Suggested omega half width (degrees)','fwhm_window')
+        ttk.Button(fwhm,text='Fill from theoretical film reflection',command=self.fill_fwhm).grid(
+            row=6,column=0,columnspan=3,sticky='ew',pady=6)
+        self.entry(fwhm,7,'Search 2theta half width (degrees)','fwhm_search_tt')
+        self.entry(fwhm,8,'Search omega half width (degrees)','fwhm_search_omega')
+        ttk.Button(fwhm,text='Find measured peak near theory',command=self.find_fwhm).grid(
+            row=9,column=0,columnspan=3,sticky='ew',pady=6)
+        self.note(fwhm,10,'Search selects the brightest measured bin inside the angular box\n'
+                  'around theory. Keep substrate peaks outside that box.\n'
+                  'Omega fit range = chosen center +/- suggested half width.\n'
+                  'Search widths differ from the extraction band and fit window.\n'
+                  'All angles include Advanced offsets. Fields remain editable.\n'
+                  'Refill after sample changes. FWHM is an empirical width in degrees.')
+        self.view=tk.StringVar(root,value='Map')
+        view=ttk.Combobox(right,textvariable=self.view,values=['Map','Film FWHM'],state='readonly')
+        view.pack(fill='x')
+        view.bind('<<ComboboxSelected>>',lambda event:self.load_preview())
+
         self.preview=ttk.Label(right,text='Your plot will appear here.',anchor='center')
         self.preview.pack(fill='both',expand=True)
         self.preview.bind('<Configure>',lambda event:self.show_image())
@@ -108,9 +133,11 @@ class Application:
         self.open_button.pack(pady=8)
         footer=ttk.Frame(root,padding=10)
         footer.pack(fill='x')
-        self.plot_button=ttk.Button(footer,text='Plot and save',command=self.plot)
+        self.plot_button=ttk.Button(footer,text='Plot',command=self.plot)
         self.plot_button.pack(side='left')
-        self.status=tk.StringVar(root,value='Choose a file, enter settings, then Plot and save.')
+        self.save_results_button=ttk.Button(footer,text='Save results',command=self.save_results,state='disabled')
+        self.save_results_button.pack(side='left',padx=8)
+        self.status=tk.StringVar(root,value='Choose a file, enter settings, then Plot.')
         ttk.Label(footer,textvariable=self.status,wraplength=950).pack(side='left',padx=12)
 
     def entry(self,page,row,label,key,command=None):
@@ -128,6 +155,23 @@ class Application:
 
     def note(self,page,row,text):
         ttk.Label(page,text=text,wraplength=440,foreground='#475569').grid(row=row,column=0,columnspan=3,sticky='w',pady=10)
+
+    def fill_fwhm(self):
+        try:
+            values=workflow.theoretical_fwhm_fields(self.fields())
+            self.apply(values)
+            self.status.set('Theoretical film angles filled. Review the band and omega range before fitting.')
+        except Exception as exc:
+            messagebox.showerror('Cannot fill theoretical FWHM settings',str(exc))
+
+    def find_fwhm(self):
+        try:
+            fields,report=workflow.measured_fwhm_fields(self.fields())
+            self.apply(fields)
+            self.status.set('Measured peak fields filled. Review the selection before fitting.')
+            messagebox.showinfo('Measured peak near theory',report)
+        except Exception as exc:
+            messagebox.showerror('Cannot find measured film peak',str(exc))
 
     def fields(self):
         return {k:v.get() for k,v in self.variables.items()}
@@ -156,7 +200,7 @@ class Application:
         path=Path.cwd()/'example_data'/name
         f['file']=str(path) if path.exists() else self.variables['file'].get()
         self.apply(f)
-        self.status.set('Preset loaded. Review Sample and Advanced, then Plot and save.')
+        self.status.set('Preset loaded. Review Sample and Advanced, then Plot.')
 
     def load(self):
         path=filedialog.askopenfilename(title='Load GUI settings.json',filetypes=[('JSON settings','*.json')])
@@ -177,16 +221,18 @@ class Application:
         try:
             form=self.fields()
             workflow.build_configuration(form)
+            workflow.fwhm_selection(form)
             if not Path(form['file']).is_file():raise ValueError('Choose an existing measurement file on the File tab.')
             self.temp=tempfile.TemporaryDirectory(prefix='rsm-gui-')
             task=Path(self.temp.name)/'settings.json'
             workflow.save_settings(task,form)
             result=Path(self.temp.name)/'result.json'
-            self.process=subprocess.Popen([sys.executable,'-m','rsm_toolkit.gui','--worker',str(task),str(result)],
+            self.process=subprocess.Popen([sys.executable,'-m','rsm_toolkit.gui','--worker',str(task),str(result),'--preview'],
                                           stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
                                           creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
             self.plot_button.config(state='disabled')
-            self.status.set('Calculating and saving… You can continue reviewing the form. This run uses the settings at click time.')
+            self.save_results_button.config(state='disabled')
+            self.status.set('Calculating preview. No results saved; this plot uses settings at click time.')
             self.root.after(200,self.poll)
         except Exception as exc:
             if self.temp:self.temp.cleanup();self.temp=None
@@ -199,20 +245,48 @@ class Application:
         try:
             result=json.loads((Path(self.temp.name)/'result.json').read_text(encoding='utf-8'))
             if 'error' in result:raise ValueError(result['error'])
+            previous_temp=self.preview_temp
+            self.preview_temp=self.temp
+            self.temp=None
             self.result_folder=Path(result['folder'])
-            from PIL import Image
-            with Image.open(self.result_folder/'map.png') as im:self.image_source=im.copy()
-            self.show_image()
-            self.open_button.config(state='normal')
-            self.status.set('Saved: '+str(self.result_folder))
+            if previous_temp:previous_temp.cleanup()
+            self.saved_folder=None
+            self.view.set('Map')
+            self.load_preview()
+            self.open_button.config(state='disabled')
+            self.status.set('Preview ready (not saved). Click Save results to keep this run.')
+            failure=self.result_folder/'FWHM_FAILED.txt'
+            if failure.exists():
+                messagebox.showwarning('Map preview ready; FWHM not fitted',failure.read_text(encoding='utf-8'))
         except Exception as exc:
             self.status.set('Plot failed. Previous preview, if any, is unchanged.')
             messagebox.showerror('Could not create map',str(exc))
         finally:
             self.process=None
-            self.temp.cleanup()
+            if self.temp:self.temp.cleanup()
             self.temp=None
+            self.save_results_button.config(state='normal' if self.result_folder else 'disabled')
             self.plot_button.config(state='normal')
+
+    def save_results(self):
+        if self.process is not None or self.result_folder is None:return
+        try:
+            self.saved_folder=workflow.save_preview(self.result_folder,self.variables['output'].get())
+            self.open_button.config(state='normal')
+            self.status.set('Saved: '+str(self.saved_folder))
+        except Exception as exc:
+            messagebox.showerror('Could not save results',str(exc))
+
+    def load_preview(self):
+        if self.result_folder is None:return
+        path=self.result_folder/('fwhm.png' if self.view.get()=='Film FWHM' else 'map.png')
+        if not path.exists():
+            self.image_source=None
+            self.preview.config(image='',text='No FWHM plot for this run. Enable Film FWHM and enter its angular range.')
+            return
+        from PIL import Image
+        with Image.open(path) as im:self.image_source=im.copy()
+        self.show_image()
 
     def show_image(self):
         if self.image_source is None:return
@@ -223,15 +297,16 @@ class Application:
         self.preview.config(image=self.photo,text='')
 
     def open_output(self):
-        if self.result_folder:
-            if sys.platform=='win32':os.startfile(str(self.result_folder))
-            elif sys.platform=='darwin':subprocess.Popen(['open',str(self.result_folder)])
-            else:subprocess.Popen(['xdg-open',str(self.result_folder)])
+        if self.saved_folder:
+            if sys.platform=='win32':os.startfile(str(self.saved_folder))
+            elif sys.platform=='darwin':subprocess.Popen(['open',str(self.saved_folder)])
+            else:subprocess.Popen(['xdg-open',str(self.saved_folder)])
 
     def close(self):
         if self.process is not None:
             messagebox.showinfo('Calculation running','Please wait for this run to finish before closing.')
             return
+        if self.preview_temp:self.preview_temp.cleanup()
         self.root.destroy()
 
 
@@ -245,7 +320,8 @@ def main():
         try:
             with warnings.catch_warnings(record=True) as caught:
                 warnings.simplefilter('always')
-                folder=workflow.execute(workflow.load_settings(sys.argv[2]))
+                folder=workflow.execute(workflow.load_settings(sys.argv[2]),
+                    output_parent=result.parent/'preview' if '--preview' in sys.argv[4:] else None)
             (folder/'warnings.txt').write_text('\n'.join(str(w.message) for w in caught),encoding='utf-8')
             value={'folder':str(folder)}
         except Exception as exc:

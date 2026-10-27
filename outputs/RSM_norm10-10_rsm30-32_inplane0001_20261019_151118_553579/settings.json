@@ -1,0 +1,31 @@
+{
+  "schema": "rsm-gui-2",
+  "fields": {
+    "file": "C:/Users/20202835/OneDrive - TU Eindhoven/Desktop/MEP/Code/XRD Data and Analysis_original - Copy - Codex/example_data/S275/RSM_norm10-10_rsm30-32_inplane0001.raw",
+    "output": "C:\\Users\\20202835\\OneDrive - TU Eindhoven\\Desktop\\MEP\\Code\\XRD Data and Analysis_original - Copy - Codex\\outputs",
+    "name": "RSM_norm10-10_rsm30-32_inplane0001",
+    "title": "Reciprocal-space map",
+    "overlays": false,
+    "substrate": "CdS",
+    "film": "CdZnS Vegard",
+    "zinc": "0.1",
+    "substrate_name": "Substrate",
+    "substrate_cell": "",
+    "film_name": "Film",
+    "film_cell": "",
+    "norm": "10-10",
+    "reflection": "30-32",
+    "inplane": "0001",
+    "aligned": true,
+    "film_norm": "",
+    "film_reflection": "",
+    "film_inplane": "",
+    "sense": "Choose axis sense",
+    "omega_offset": "0",
+    "detector_offset": "0",
+    "wavelength": "",
+    "scale": "log",
+    "mode": "points",
+    "decades": "4"
+  }
+}

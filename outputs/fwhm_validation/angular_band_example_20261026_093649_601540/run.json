@@ -1,0 +1,23 @@
+{
+  "geometry": {
+    "type": "coplanar",
+    "omega_motor": "Theta",
+    "detector_motor": "TwoTheta",
+    "omega_sign": 1,
+    "detector_sign": 1,
+    "omega_offset_deg": 0.0,
+    "detector_offset_deg": 0.0,
+    "calibration_verified": false,
+    "calibration_reference": null,
+    "frame": "sample coplanar"
+  },
+  "wavelength_angstrom": null,
+  "plot": {
+    "title": "Reciprocal-space map",
+    "theoretical_overlays": false,
+    "mode": "points",
+    "intensity_scale": "log",
+    "dynamic_range_decades": 4.0
+  },
+  "notes": "Coplanar reconstruction. InPlane is a direct crystal direction. No automatic offset or peak alignment. Input fields are saved in settings.json."
+}
